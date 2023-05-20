@@ -1,4 +1,4 @@
-SRCS = megaphone.cpp
+SRCS = phoneBook.cpp
 SRCS_PATH = ./
 
 OBJS = ${patsubst %.cpp, ${OBJS_PATH}/%.o, ${SRCS}}
@@ -9,7 +9,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 vpath %.cpp ${SRCS_PATH}
 
-NAME = megaphone
+NAME = myAwesomePhoneBook
 
 all: ${NAME}
 

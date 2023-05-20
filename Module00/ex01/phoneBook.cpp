@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   phoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: titouan_ck <titouan_ck@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:40:19 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/05/20 15:55:54 by titouan_ck       ###   ########.fr       */
+/*   Updated: 2023/05/20 16:00:20 by titouan_ck       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
+#include "phoneBook.hpp"
 
 std::string	toupperStr(std::string str)
 {
