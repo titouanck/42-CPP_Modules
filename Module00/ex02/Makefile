@@ -1,4 +1,4 @@
-SRCS = phoneBook.cpp main.cpp utils.cpp
+SRCS = Account.cpp tests.cpp
 SRCS_PATH = srcs/
 INC = -I inc/
 
@@ -6,15 +6,15 @@ OBJS = ${patsubst %.cpp, ${OBJS_PATH}/%.o, ${SRCS}}
 OBJS_PATH = ./objs/
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+# CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 vpath %.cpp ${SRCS_PATH}
 
-NAME = myAwesomePhoneBook
+NAME = theJobOfYourDreams
 
 all: ${NAME}
 
-${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/phoneBook.hpp
+${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/Account.hpp
 		mkdir -p ${OBJS_PATH}
 		${CC} ${CFLAGS} -c $< -o $@ ${INC}
 
