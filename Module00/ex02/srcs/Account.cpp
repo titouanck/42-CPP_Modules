@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 17:57:15 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/05/24 20:45:32 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:56:59 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,9 @@ void	Account::_displayTimestamp(void)
 	std::cout << '[' << str << "] ";
 }
 
-Account::Account(int initial_deposit) : _amount(initial_deposit), _accountIndex(_nbAccounts)
+Account::Account(int initial_deposit) : _amount(initial_deposit)
 {
+	_accountIndex = _nbAccounts;
 	_totalAmount += _amount;
 	_nbAccounts += 1;
 	_nbDeposits = 0;
