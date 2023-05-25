@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: titouan_ck <titouan_ck@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:17:50 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/05/25 12:17:50 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/26 01:13:16 by titouan_ck       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,25 @@
 #include <fstream>
 #include <cstddef>   
 
-bool	ends_with_newline(std::ifstream &infile)
-{
-	std::string	buffer;
-
-	getline(infile, buffer, '\0');
-	infile.clear();
-	infile.seekg(0);
-	if (buffer.length() < 1 || *(buffer.end() - 1) != '\n')
-		return (false);
-	else
-		return (true);
-}
 
 void	ft_replace(std::ifstream &infile, std::ofstream &outfile, std::string s1, std::string s2)
 {
-	std::string	line;
+	std::string	lines;
 	size_t		n;
-	bool		newline;
-	bool		firstLine = true;
 
-	newline = ends_with_newline(infile);
-	while (getline(infile, line))
+	if (getline(infile, lines, '\0'))
 	{
-		if (firstLine == false)
-			outfile << std::endl;
-		firstLine = false;
 		n = 0;
 		while (1)
 		{
-			n = line.find(s1, n);
+			n = lines.find(s1, n);
 			if (n == std::string::npos)
 				break ;
-			line = line.substr(0, n) + s2 + line.substr(n + s1.length());
+			lines = lines.substr(0, n) + s2 + lines.substr(n + s1.length());
 			n += s2.length();
 		}
-		outfile << line;
+		outfile << lines;
 	}
-	if (newline == true)
-		outfile << std::endl;
 }
 
 int	main(int argc, char **argv)
