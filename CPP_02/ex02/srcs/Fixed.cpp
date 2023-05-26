@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:42:40 by titouan_ck        #+#    #+#             */
-/*   Updated: 2023/05/26 18:14:41 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/26 19:10:00 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,14 @@ bool	Fixed::operator==(const Fixed &other)
 bool	Fixed::operator!=(const Fixed &other)
 {
 	return (this->getRawBits() != other.getRawBits());
+}
+
+Fixed	Fixed::operator+(const Fixed &other)
+{
+	Fixed	addition;
+
+	addition.setRawBits(this->getRawBits() + other.getRawBits());
+	return (addition);
 }
 
 std::ostream&	operator<<(std::ostream &os, const Fixed &srcFixed)

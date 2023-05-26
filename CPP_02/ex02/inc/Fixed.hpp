@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:41:33 by titouan_ck        #+#    #+#             */
-/*   Updated: 2023/05/26 18:14:46 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/26 19:08:19 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ class Fixed
 		bool	operator>=(const Fixed &other);
 		bool	operator==(const Fixed &other);
 		bool	operator!=(const Fixed &other);
+		Fixed	operator+(const Fixed &other);
 };
 
 std::ostream&	operator<<( std::ostream &os, const Fixed &srcFixed );
