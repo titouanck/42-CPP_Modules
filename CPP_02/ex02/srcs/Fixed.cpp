@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:42:40 by titouan_ck        #+#    #+#             */
-/*   Updated: 2023/05/26 19:10:00 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/30 15:23:59 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		Fixed::toInt (void) const
 
 Fixed	&Fixed::operator=(const Fixed &src)
 {
-	std::cerr << "Copy assignement operator called\n";
+	// std::cerr << "Copy assignement operator called\n";
 	this->_fixedPointNumber = src.getRawBits();
 	return (*this);
 }
@@ -101,10 +101,86 @@ bool	Fixed::operator!=(const Fixed &other)
 
 Fixed	Fixed::operator+(const Fixed &other)
 {
-	Fixed	addition;
+	Fixed	operation(this->toFloat() + other.toFloat());
+	return (operation);
+}
 
-	addition.setRawBits(this->getRawBits() + other.getRawBits());
-	return (addition);
+Fixed	Fixed::operator-(const Fixed &other)
+{
+	Fixed	operation(this->toFloat() - other.toFloat());
+	return (operation);
+}
+
+Fixed	Fixed::operator/(const Fixed &other)
+{
+	Fixed	operation(this->toFloat() / other.toFloat());
+	return (operation);
+}
+
+Fixed	Fixed::operator*(const Fixed &other)
+{
+	Fixed	operation(this->toFloat() * other.toFloat());
+	return (operation);
+}
+
+Fixed	&Fixed::operator++()
+{
+	this->setRawBits((this->getRawBits()) + 1);
+	return (*this);
+}
+
+Fixed	Fixed::operator++( int )
+{
+	Fixed	operation(*this);
+
+	this->setRawBits((this->getRawBits()) + 1);
+	return (operation);
+}
+
+Fixed	&Fixed::operator--()
+{
+	this->setRawBits((this->getRawBits()) - 1);
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	operation(*this);
+
+	this->setRawBits((this->getRawBits()) - 1);
+	return (operation);
+}
+
+Fixed	&Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a.toFloat() < b.toFloat())
+		return (a);
+	else
+		return (b);
+}
+
+const Fixed	&Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a.toFloat() < b.toFloat())
+		return (a);
+	else
+		return (b);
+}
+
+Fixed	&Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a.toFloat() > b.toFloat())
+		return (a);
+	else
+		return (b);
+}
+
+const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a.toFloat() > b.toFloat())
+		return (a);
+	else
+		return (b);
 }
 
 std::ostream&	operator<<(std::ostream &os, const Fixed &srcFixed)
@@ -112,3 +188,4 @@ std::ostream&	operator<<(std::ostream &os, const Fixed &srcFixed)
 	os << (srcFixed.toFloat());
 	return (os);
 }
+
