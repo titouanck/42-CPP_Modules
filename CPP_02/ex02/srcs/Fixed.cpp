@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 01:42:40 by titouan_ck        #+#    #+#             */
-/*   Updated: 2023/05/30 15:23:59 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/30 15:41:10 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Fixed::Fixed(const Fixed &src)
 	*this = src;
 }
 
-Fixed::Fixed(const int srcNbr) : _fixedPointNumber((float)srcNbr * (1 << this->_fractionalBits))
+Fixed::Fixed(const int srcNbr) : _fixedPointNumber(srcNbr * (1 << this->_fractionalBits))
 {
 	// std::cerr << "Int constructor called with " << srcNbr << std::endl;
 }
