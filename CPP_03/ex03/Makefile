@@ -1,4 +1,4 @@
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 SRCS_PATH = srcs/
 INC = -I inc/
 
@@ -10,11 +10,11 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 vpath %.cpp ${SRCS_PATH}
 
-NAME = ScavTrap
+NAME = DiamondTrap
 
 all: ${NAME}
 
-${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/ClapTrap.hpp inc/ScavTrap.hpp
+${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/ClapTrap.hpp inc/ScavTrap.hpp inc/FragTrap.hpp inc/DiamondTrap.hpp
 		mkdir -p ${OBJS_PATH}
 		${CC} ${CFLAGS} -c $< -o $@ ${INC}
 

@@ -3,43 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: titouan_ck <titouan_ck@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:59:03 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/05/30 18:48:34 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/05/31 14:19:50 by titouan_ck       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
-	ClapTrap	t("Titouan");
-	ClapTrap	v("Victor");
-	ClapTrap	n("Nico");
-	ClapTrap	p("Pierre");
+	std::cout << "-----------------------------------------------------------------------------" << std::endl;
+	
+	ScavTrap	firstOne("Titouan");
+	ScavTrap	firstOneClone(firstOne);
+	
+	std::cout << "-----------------------------------------------------------------------------" << std::endl;
+	
+	for (int i = 0; i < 50; i++)
+		firstOneClone.attack("Baptiste");
+	firstOneClone.attack("Baptiste");
 
-	t.attack("Victor");
+	std::cout << "-----------------------------------------------------------------------------" << std::endl;
 
-	v.takeDamage(0);
+	ScavTrap	anotherOne("Victor");
+
+	for (int i = 0; i < 10; i++)
+		anotherOne.takeDamage(10);	
+	anotherOne.takeDamage(10);	
+
+	std::cout << "-----------------------------------------------------------------------------" << std::endl;
+
+	ScavTrap	andAnotherOne("Pierre");
+
+	andAnotherOne.guardGate();
+	andAnotherOne.guardGate();
 	
-	n.takeDamage(9);
-	n.beRepaired(5);
-	n.takeDamage(9);
-	n.beRepaired(5);
-	n.attack("Titouan");
+	std::cout << "-----------------------------------------------------------------------------" << std::endl;
+
+	ScavTrap	theLastOne("Nicolas");
+
+	theLastOne.takeDamage(42);
+	for (int i = 0; i < 50; i++)
+		theLastOne.beRepaired(42);
+	theLastOne.beRepaired(42);
 	
-	p.beRepaired(200);
-	p.beRepaired(200);
-	p.beRepaired(200);
-	p.beRepaired(200);
-	p.beRepaired(200);
-	p.beRepaired(200);
-	p.beRepaired(200);
-	p.beRepaired(200);
-	p.beRepaired(200);
-	p.beRepaired(200);
-	p.beRepaired(200);
-	
+	std::cout << "-----------------------------------------------------------------------------" << std::endl;
 	return (0);
 }
