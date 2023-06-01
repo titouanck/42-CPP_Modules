@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 22:30:59 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/02 01:48:14 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/02 01:51:59 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,16 @@ int main()
 
 	std::cout << "---" << std::endl;
 
-	const WrongAnimal	*wrongOne = new WrongCat();
+	const WrongAnimal	*wrongAngryAnimal = new WrongAnimal();
+	const WrongAnimal	*wrongAngryCat = new WrongCat();
 
 	std::cout << "---" << std::endl;
 
-	std::cout << wrongOne->getType() << " " << std::endl;
-	wrongOne->makeSound();
+	std::cout << wrongAngryCat->getType() << " " << std::endl;
+	wrongAngryAnimal->makeSound();
+	wrongAngryCat->makeSound();
 
 	std::cout << "---" << std::endl;
 
-	delete wrongOne;
+	delete wrongAngryAnimal; delete wrongAngryCat;
 }
