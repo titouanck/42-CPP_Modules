@@ -6,7 +6,7 @@
 /*   By: titouan_ck <titouan_ck@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 22:32:56 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/02 13:51:04 by titouan_ck       ###   ########.fr       */
+/*   Updated: 2023/06/02 18:58:22 by titouan_ck       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,3 @@ std::string	Animal::getType(void) const
 	return(this->_type);
 }
 
-void	Animal::makeSound(void) const
-{
-	if (this->_type.compare("") == 0)
-		std::cout << "Unknown" << ": * An unfamiliar and disturbing Animal sound *" << std::endl;
-	else
-		std::cout << _type << ": * An unfamiliar and disturbing Animal sound *" << std::endl;
-}
