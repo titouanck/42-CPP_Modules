@@ -6,7 +6,7 @@
 /*   By: titouan_ck <titouan_ck@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 22:30:59 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/03 18:58:34 by titouan_ck       ###   ########.fr       */
+/*   Updated: 2023/06/04 00:12:51 by titouan_ck       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include "Character.hpp"
 #include "Ice.hpp"
 #include "IMateriaSource.hpp"
+
+bool	g_logs;
+
 
 void	subjectMain(void)
 {
@@ -44,125 +47,125 @@ void	subjectMain(void)
 
 void	myMain(void)
 {
+	g_logs = true;
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 	
-	Character me("me");
-	AMateria	*tmp;
-
-	/*
-		Création de 8 Materiaux.
-		Puis pour chaque matériaux crée:
-			On déséquippe le précédent.
-			On équipe le nouveau.
-
-		Le but est de vérifier que les anciens materiaux 
-		seront biens delete d'ici la fin du programme.
-	*/
-	for (int i = 0; i < 8; i++)
-	{
-		tmp = src->createMateria("ice");
-		me.unequip(0);
-		me.equip(tmp);
-	}
-	
-	std::cout << "--- FOR LOOP ---" << std::endl;
-
-	/*
-		On va, 8 fois de suite, déséquiper et rééquiper un materiaux.
-
-		Le but est de vérifier que les materiaux ne seront biens
-		delete qu'une seule fois, et non plusieurs.
-	*/
-	for (int i = 0; i < 8; i++)
-	{
-		me.unequip(0);
-		me.equip(tmp);
-	}
-
-	std::cout << "--- FOR LOOP ---" << std::endl;
-	
-	/*
-		On va équipper plus de materiaux (8) qu'il n'y a de place dans
-		l'inventaire (4). A partir du 5eme, ce ne devrait plus être possible.
-	*/
-	me.unequip(0);
-	for (int i = 0; i < 8; i++)
-		me.equip(tmp);
-
-	// ICharacter	*jim = new Character("jim");
-	
-	// std::cout << "original:" << std::endl;
-	// me.use(0, *jim);
-	
-	// Character copyMe(me);
-	// std::cout << "copy:" << std::endl;
-	// copyMe.use(0, *jim);
-	
-	// /* 
-	// 	On va vérifier que <copyMe> n´a rien à utiliser.
-	// */
-	// copyMe.unequip(0);
-	// copyMe.use(0, *jim);
-	
-	/* 
-		On va vérifier que tmp ne pourras pas être équipper 
-		par <copyMe> car déjà en cours d'usage par <me>.
-	*/
-	// copyMe.equip(tmp);
-
-	// delete jim;
-	delete src;
-}
-
-void victorMain(void)
-{
-	IMateriaSource* src = new MateriaSource();
-	std::cout << std::endl;
-	src->learnMateria(new Ice());
-	src->learnMateria(new Cure());
-
 	ICharacter* me = new Character("me");
-	ICharacter* meBis = new Character("meBis");
-	AMateria* tmp1;
-	AMateria* tmp2;
+	(void) me;
+	AMateria	*tmpIce;
+	(void) tmpIce;
 
-	tmp1 = src->createMateria("ice");
-	me->equip(tmp1);
+	std::cout << IBLUE "Mettre successivement 8 objets différents dans inventory[0] " NC << std::endl;
+	std::cout << IBLUE "Attendu: 16/16 " NC << std::endl << std::endl;
+	for (int i = 0; i < 8; i++)
+	{
+		tmpIce = src->createMateria("ice");
+		me->equip(tmpIce);
+		me->unequip(0);
+		std::cout << std::endl;
+	}
+	
+	std::cout << IBLUE "Ré-équipper et déséquipper 8 fois de suite le même objet dans inventory[0] " NC << std::endl;
+	std::cout << IBLUE "Attendu: 16/16 " NC << std::endl << std::endl;
+	for (int i = 0; i < 8; i++)
+	{
+		me->equip(tmpIce);
+		me->unequip(0);
+		std::cout << std::endl;
+	}
 
-	tmp2 = src->createMateria("cure");
-	me->equip(tmp2);
+	std::cout << IBLUE "Équipper davantage de materiaux qu'il n'y a de place dans inventory[] " NC << std::endl;
+	std::cout << IBLUE "Attendu: 4/8 " NC << std::endl << std::endl;
+	for (int i = 0; i < 8; i++)
+	{
+		tmpIce = src->createMateria("ice");
+		me->equip(tmpIce);
+		std::cout << std::endl;
+	}
+
+	ICharacter* someoneElse = new Character("someoneElse");
+	AMateria	*tmpCure;
+
+	std::cout << IBLUE "Mettre successivement 8 objets différents dans inventory[0] " NC << std::endl;
+	std::cout << IBLUE "Attendu: 16/16 " NC << std::endl << std::endl;
+	for (int i = 0; i < 8; i++)
+	{
+		tmpCure = src->createMateria("cure");
+		someoneElse->equip(tmpCure);
+		someoneElse->unequip(0);
+		std::cout << std::endl;
+	}
 	
-	ICharacter* bob = new Character("bob");
-	me->use(0, *bob);
-	me->use(1, *bob);
-	me->unequip(1);
+	std::cout << IBLUE "Ré-équipper et déséquipper 8 fois de suite le même objet dans inventory[0] " NC << std::endl;
+	std::cout << IBLUE "Attendu: 16/16 " NC << std::endl << std::endl;
+	for (int i = 0; i < 8; i++)
+	{
+		someoneElse->equip(tmpCure);
+		someoneElse->unequip(0);
+		std::cout << std::endl;
+	}
+
+	std::cout << IBLUE "Équipper davantage de materiaux qu'il n'y a de place dans inventory[] " NC << std::endl;
+	std::cout << IBLUE "Attendu: 4/8 " NC << std::endl << std::endl;
+	for (int i = 0; i < 8; i++)
+	{
+		tmpCure = src->createMateria("cure");
+		someoneElse->equip(tmpCure);
+		std::cout << std::endl;
+	}
+
+	std::cout << IBLUE "Vider les inventaires" NC << std::endl;
+	std::cout << IBLUE "Attendu: 8/12 " NC << std::endl << std::endl;
+	for (int i = -1; i < 5; i++)
+	{
+		me->unequip(i);
+		someoneElse->unequip(i);
+		std::cout << std::endl;
+	}
 	
-	meBis->equip(tmp2);
-	meBis->use(0, *bob);
+
+	std::cout << IBLUE "Tenter d'assigner le même objet à deux personnes." NC << std::endl;
+	std::cout << IBLUE "Attendu: 1/2 " NC << std::endl << std::endl;
+
+	tmpCure = src->createMateria("cure");
+	me->equip(tmpCure);
+	std::cout << std::endl;
+	someoneElse->equip(tmpCure);
+	std::cout << std::endl;
+
+	std::cout << IBLUE "Reposer un item au sol. Laisser une autre personne le ramasser." NC << std::endl;
+	std::cout << IBLUE "Attendu: 2/2 " NC << std::endl << std::endl;
+
+	me->unequip(0);
+	std::cout << std::endl;
+	someoneElse->equip(tmpCure);
+	std::cout << std::endl;
+
+	std::cout << IBLUE "Kick une personne. Laisser une autre personne ramasser un de ses objets." NC << std::endl;
+	std::cout << IBLUE "Attendu: 1/1 " NC << std::endl << std::endl;
+
+	delete someoneElse;
+	me->equip(tmpCure);
+	std::cout << std::endl;
+
+	std::cout << IBLUE "Fin du programme, tous les objets font être lachés au sol puis supprimés." NC << std::endl << std::endl;
 	
-	delete bob;
 	delete me;
-	delete meBis;
 	delete src;
 }
 
 int main()
 {
-	std::cout << "---" << std::endl;
+	g_logs = false;
 
-	// subjectMain();
+	std::cout << "---> Main from the subject" << std::endl;
+	subjectMain();
+	std::cout << std::endl;
 
-	std::cout << "---" << std::endl;
-
+	std::cout << "---> Additional tests" << std::endl;
 	myMain();
-	
-	std::cout << "---" << std::endl;
-
-	// victorMain();
-	
-	std::cout << "---" << std::endl;
 	
 	return (0);
 }
