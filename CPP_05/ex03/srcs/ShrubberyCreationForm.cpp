@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 15:53:47 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/04 23:09:56 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:43:04 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,3 +79,12 @@ void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 	}
 	file.close();
 }
+
+Form	*ShrubberyCreationForm::createInstance(std::string target)
+{
+	Form	*obj;
+
+	obj = new ShrubberyCreationForm(target);
+	return (obj);
+}
+

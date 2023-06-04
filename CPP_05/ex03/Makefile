@@ -1,4 +1,4 @@
-SRCS = main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRCS = main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 SRCS_PATH = srcs/
 INC = -I inc/
 
@@ -6,8 +6,8 @@ OBJS = ${patsubst %.cpp, ${OBJS_PATH}/%.o, ${SRCS}}
 OBJS_PATH = ./objs/
 
 CC = c++
-# CFLAGS = -Wall -Wextra -Werror 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+# CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -std=c++98
 
 vpath %.cpp ${SRCS_PATH}
 
@@ -15,7 +15,7 @@ NAME = Forms
 
 all: ${NAME}
 
-${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/Bureaucrat.hpp inc/Form.hpp inc/ShrubberyCreationForm.hpp inc/RobotomyRequestForm.hpp inc/PresidentialPardonForm.hpp
+${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/Bureaucrat.hpp inc/Form.hpp inc/ShrubberyCreationForm.hpp inc/RobotomyRequestForm.hpp inc/PresidentialPardonForm.hpp inc/Intern.hpp
 		mkdir -p ${OBJS_PATH}
 		${CC} ${CFLAGS} -c $< -o $@ ${INC}
 

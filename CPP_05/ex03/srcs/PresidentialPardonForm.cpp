@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 15:55:07 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/04 22:38:14 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:44:01 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,12 @@ void	PresidentialPardonForm::execute(const Bureaucrat &executor) const
 		throw;
 	}
 	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+}
+
+Form	*PresidentialPardonForm::createInstance(std::string target)
+{
+	Form	*obj;
+
+	obj = new PresidentialPardonForm(target);
+	return (obj);
 }

@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 15:53:13 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/04 22:35:48 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:40:50 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 			ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &obj);
 
 			void	execute(const Bureaucrat &executor) const;
+
+			static Form	*createInstance(std::string target);
 	};
 
 #endif

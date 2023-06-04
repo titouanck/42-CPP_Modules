@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 15:54:03 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/04 17:02:46 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:43:24 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 			RobotomyRequestForm	&operator=(const RobotomyRequestForm &obj);
 
 			void	execute(const Bureaucrat &executor) const;
+
+			static Form	*createInstance(std::string target);
 	};
 
 #endif

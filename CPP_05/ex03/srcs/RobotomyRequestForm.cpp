@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 15:54:29 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/04 22:37:54 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:43:47 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,12 @@ void	RobotomyRequestForm::execute(const Bureaucrat &executor) const
 		std::cout << _target << " could not be robotomised :(" << std::endl;
 	else
 		std::cout << _target << " has been successfully robotomised :)" << std::endl;
+}
+
+Form	*RobotomyRequestForm::createInstance(std::string target)
+{
+	Form	*obj;
+
+	obj = new RobotomyRequestForm(target);
+	return (obj);
 }

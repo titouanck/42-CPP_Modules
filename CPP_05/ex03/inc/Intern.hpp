@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/04 15:54:41 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/04 23:43:31 by tchevrie         ###   ########.fr       */
+/*   Created: 2023/06/04 23:14:28 by tchevrie          #+#    #+#             */
+/*   Updated: 2023/06/04 23:16:44 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-	#define PRESIDENTIALPARDONFORM_HPP
+#ifndef INTERN_HPP
+	#define INTERN_HPP
 
 	#include "Form.hpp"
 
-	class PresidentialPardonForm : public Form
+	class Intern
 	{
 		public:
-			PresidentialPardonForm(std::string target);
-			PresidentialPardonForm(const PresidentialPardonForm &obj);
-			~PresidentialPardonForm(void);
-			PresidentialPardonForm	&operator=(const PresidentialPardonForm &obj);
-
-			void	execute(const Bureaucrat &executor) const;
-	
-			static Form	*createInstance(std::string target);
+			Intern(void);
+			Intern(const Intern &obj);
+			~Intern(void);
+			Intern	&operator=(const Intern &obj);
+			
+			Form	*makeForm(std::string type, std::string target);
 	};
 
 #endif
