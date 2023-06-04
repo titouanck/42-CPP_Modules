@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 15:55:07 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/04 17:19:01 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/04 22:38:14 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPard
 
 void	PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
-	try
-	{
+	try {
 		_readyToExecute(executor);
 	}
-	catch (std::exception &e)
-	{
+	catch (std::exception &e) {
 		throw;
 	}
 	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;

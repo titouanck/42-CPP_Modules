@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 11:59:05 by titouan_ck        #+#    #+#             */
-/*   Updated: 2023/06/04 17:17:57 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:03:22 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,36 @@
 Bureaucrat	lvl150("Some bureaucrat lvl 150", 150);
 Bureaucrat	lvl42("Some bureaucrat lvl 42", 42);
 Bureaucrat	lvl1("Some bureaucrat lvl 1", 1);
+
+void	ShrubberyCreationMain(void)
+{
+	ShrubberyCreationForm shrubberyCreationFormObj("garden");
+
+	try
+	{
+		shrubberyCreationFormObj.execute(lvl1);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Exception: " << e.what() << std::endl;
+	}
+	lvl1.executeForm(shrubberyCreationFormObj);
+	std::cout << std::endl;
+
+	try
+	{
+		shrubberyCreationFormObj.beSigned(lvl150);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Exception: " << e.what() << std::endl;
+	}
+	lvl150.signForm(shrubberyCreationFormObj);
+	std::cout << std::endl;
+
+	lvl42.signForm(shrubberyCreationFormObj);
+	lvl42.executeForm(shrubberyCreationFormObj);
+}
 
 void	RobotomyRequestMain(void)
 {
@@ -81,6 +111,10 @@ void	PresidentialPardonMain(void)
 
 int	main(void)
 {	
+	std::cout << "---" << std::endl;
+
+	ShrubberyCreationMain();
+
 	std::cout << "---" << std::endl;
 
 	RobotomyRequestMain();

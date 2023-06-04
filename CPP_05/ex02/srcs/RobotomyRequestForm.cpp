@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 15:54:29 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/04 16:54:14 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/04 22:37:54 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@ void	RobotomyRequestForm::execute(const Bureaucrat &executor) const
 {
 	time_t		rawTime;
 
-	try
-	{
+	try {
 		_readyToExecute(executor);
 	}
-	catch (std::exception &e)
-	{
+	catch (std::exception &e) {
 		throw;
 	}
 	
