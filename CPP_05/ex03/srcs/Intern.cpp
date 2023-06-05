@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 23:16:51 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/05 00:12:53 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/05 18:26:50 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ Form	*Intern::makeForm(std::string type, std::string target)
 {
 	std::string	forms[] 							= {"shrubbery creation", "robotomy request", "presidential pardon"};
 	Form		*(*selectInstance[])(std::string)	= {&ShrubberyCreationForm::createInstance, &RobotomyRequestForm::createInstance, &PresidentialPardonForm::createInstance};
-	int 		i;
 	Form		*formObj;
+	size_t		i;
 	size_t		tabSize;
 
 	tabSize = sizeof(selectInstance) / sizeof(selectInstance[0]);
