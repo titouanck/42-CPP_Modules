@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:17:31 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/07 20:47:24 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/07 22:01:37 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ Serializer::Serializer(const Serializer &obj)
 	(void) obj;
 } 
 
-
 Serializer::~Serializer(void)
-{}
+{
+	
+}
 
 Serializer	&Serializer::operator=(const Serializer &obj)
 {
@@ -58,17 +59,12 @@ unsigned long int	Serializer::serialize(Data *ptr)
 Data	*Serializer::deserialize(unsigned long int serialNumber)
 {
 	Data	*current;
-	Data	*tmp;
 
 		current = &_lstData;
 		while (current->next)
 		{
 			if (current->next->serialNumber == serialNumber)
-			{
-				tmp = current->next;
-				current->next = current->next->next;
-				return (tmp);
-			}
+				return (current->next);
 			current = current->next;
 		}
 		return (NULL);	

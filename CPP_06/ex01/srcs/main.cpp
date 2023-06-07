@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:16:46 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/07 20:57:35 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/07 22:03:04 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,26 @@
 
 int	main()
 {
-	unsigned long int	serialNumber;
 	Data				*ptr;
 
 	std::cout << "--- --- --- ---" << std::endl;
 
+	unsigned long int	serialNumber;
 	Data				objData;
 
 	objData.serialNumber = 42;
 	serialNumber = Serializer::serialize(&objData);
 	ptr = Serializer::deserialize(serialNumber);
 
+	std::cout << "serial number:   " << serialNumber << std::endl;
+	std::cout << "objData address: " << &objData << std::endl;
+	std::cout << "retuned address: " << ptr << std::endl;
+
+	std::cout << "--- --- --- ---" << std::endl;
+
+	std::cout << "we try to deserialize again" << std::endl;
+	ptr = Serializer::deserialize(serialNumber);
+	
 	std::cout << "serial number:   " << serialNumber << std::endl;
 	std::cout << "objData address: " << &objData << std::endl;
 	std::cout << "retuned address: " << ptr << std::endl;
@@ -41,4 +50,28 @@ int	main()
 	std::cout << "serial number:          " << anotherObjData.serialNumber  << std::endl;
 	std::cout << "anotherObjData address: " << &anotherObjData << std::endl;
 	std::cout << "retuned address:        " << ptr << std::endl;
+
+	std::cout << "--- --- --- ---" << std::endl;
+
+	std::cout << "we try to deserialize again" << std::endl;
+	ptr = Serializer::deserialize(anotherObjData.serialNumber);
+	
+	std::cout << "serial number:          " << anotherObjData.serialNumber  << std::endl;
+	std::cout << "anotherObjData address: " << &anotherObjData << std::endl;
+	std::cout << "retuned address:        " << ptr << std::endl;
+
+	std::cout << "--- --- --- ---" << std::endl;
+
+	std::cout << "Deserialize a non-existing serial number: " << Serializer::deserialize(-42) << std::endl;
+
+	std::cout << "--- --- --- ---" << std::endl;
+
+	std::cout << "Serialize with a NULL address" << std::endl;
+	try {
+		serialNumber = Serializer::serialize(NULL);
+	}
+	catch (std::exception &e) {
+		std::cout << "CATCH EXCEPTION: " << e.what() << std::endl;
+	}
+
 }
