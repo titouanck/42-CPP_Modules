@@ -14,7 +14,7 @@ NAME = Templates
 
 all: ${NAME}
 
-${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/whatever.hpp
+${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/iter.hpp
 		mkdir -p ${OBJS_PATH}
 		${CC} ${CFLAGS} -c $< -o $@ ${INC}
 

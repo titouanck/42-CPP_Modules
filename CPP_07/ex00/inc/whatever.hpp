@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Templates.hpp                                      :+:      :+:    :+:   */
+/*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:01:28 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/08 13:08:58 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:16:09 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEMPLATES_HPP
-	#define TEMPLATES_HPP
+#ifndef WHATEVER_HPP
+	#define WHATEVER_HPP
 
 	#include <iostream>
 	
