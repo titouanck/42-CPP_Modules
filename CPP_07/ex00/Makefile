@@ -1,4 +1,4 @@
-SRCS = main.cpp Serializer.cpp
+SRCS = main.cpp
 SRCS_PATH = srcs/
 INC = -I inc/
 
@@ -10,11 +10,11 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 vpath %.cpp ${SRCS_PATH}
 
-NAME = Serialize
+NAME = Templates
 
 all: ${NAME}
 
-${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/Serializer.hpp
+${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/Templates.hpp
 		mkdir -p ${OBJS_PATH}
 		${CC} ${CFLAGS} -c $< -o $@ ${INC}
 
