@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:23:48 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/09 14:57:43 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:04:55 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,87 +15,49 @@
 #include <map>
 #include <list>
 #include <stack>
-
-
 #include <algorithm>
 #include <iostream>
 #include "easyfind.hpp"
 
-template <typename T>
-void	fillContainerPushBack(T &container)
-{
-	container.push_back(4);
-	container.push_back(8);
-	container.push_back(15);
-	container.push_back(16);
-	container.push_back(23);
-	container.push_back(42);
-}
-
-template <typename T>
-void	fillContainerPush(T &container)
-{
-	container.push(4);
-	container.push(8);
-	container.push(15);
-	container.push(16);
-	container.push(23);
-	container.push(42);
-}
-
 int	main(void)
 {
-	std::vector<int>			myVector;
-	std::deque<int>				myDeque;
-	std::list<int>				myList;
-	std::stack<int>				myStack;
-	std::queue<int>				myQueue;
-	std::priority_queue<int>	myPriorityQueue;
+	std::stack<int>	stk;
+
+	stk.push(4);
+	stk.push(8);
+	stk.push(15);
+	stk.push(16);
+	stk.push(23);
+	stk.push(42);
 	
-	std::vector<int>::iterator	it;
-	std::deque<int>::iterator	it2;
-	std::list<int>::iterator	it3;
-	std::stack<int>::iterator	it4;
-	std::queue<int>::iterator	it5;
-	std::priority_queue<int>::iterator	it6;
+	std::vector<int>	vect(std::vector<int> stk);
 
-	fillContainerPushBack(myVector);
-	fillContainerPushBack(myDeque);
-	fillContainerPushBack(myList);
-	fillContainerPush(myStack);
-	fillContainerPush(myQueue);
-	fillContainerPush(myPriorityQueue);
+	vect.push_back(4);
+	// std::vector<int>	vect;
+	// vect.push_back(8);
+	// vect.push_back(15);
+	// vect.push_back(16);
+	// vect.push_back(23);
+	// vect.push_back(42);
 
-	it = easyfind(myVector, 23);
-	if (it == myVector.end())
-		std::cout << "Not founded." << std::endl;
-	else
-	{
-		std::cout << "Founded!" << std::endl;
-		std::cout << "Located between " << *(it - 1) << " and " << *(it + 1) << std::endl;
-	}
+	// std::cout << easyfind(vect, 42) << std::endl;
+	// std::cout << easyfind(vect, 23) << std::endl;
+	// std::cout << easyfind(vect, 16) << std::endl;
+	// std::cout << easyfind(vect, 15) << std::endl;
+	// std::cout << easyfind(vect, 8) << std::endl;
+	// std::cout << easyfind(vect, 4) << std::endl;
+	// std::cout << easyfind(vect, -42) << std::endl;
 
-	it2 = easyfind(myDeque, 23);
-	if (it2 == myDeque.end())
-		std::cout << "Not founded." << std::endl;
-	else
-	{
-		std::cout << "Founded!" << std::endl;
-		std::cout << "Located between " << *(it2 - 1) << " and " << *(it2 + 1) << std::endl;
-	}
+	// std::vector<int>	t(std::vector<int> stk);
+	// std::vector<int>::container_type::iterator	vectResult;
+	// std::stack<int>::container_type::iterator	stkResult;
 
-	it3 = easyfind(myList, 23);
-	if (it3 == myList.end())
-		std::cout << "Not founded." << std::endl;
-	else
-	{
-		std::cout << "Founded!" << std::endl;
-		std::cout << "Located between ";
-		it3--;
-		std::cout << *it3 << " and ";
-		it3++;
-		it3++;
-		std::cout << *it3 << std::endl;
-	}
 
+	// std::cout << easyfind(stk, 42) << std::endl;
+	// std::cout << easyfind(stk, 23) << std::endl;
+	// std::cout << easyfind(stk, 16) << std::endl;
+	// std::cout << easyfind(stk, 15) << std::endl;
+	// std::cout << easyfind(stk, 8) << std::endl;
+	// std::cout << easyfind(stk, 4) << std::endl;
+	// std::cout << easyfind(stk, -42) << std::endl;
 }

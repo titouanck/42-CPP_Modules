@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 11:56:16 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/08 13:41:36 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:11:34 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ int main( void )
 	std::string strTab[] = {"Lorem",  "ipsum",  "dolor",  "sit",  "amet", "consectetur", "adipiscing", "elit."};
 	size_t		strTabSize = (sizeof(strTab) / sizeof(strTab[0]));
 
-	iter(tab, tabSize, &print);
+	iter<int, void>(tab, tabSize, &print);
 	
 	std::cout << std::endl << std::endl;
 	std::cout << "Let's add +1 to each element" << std::endl;
-	iter(tab, tabSize, &addOne);
-	iter(tab, tabSize, &print);
+	iter<int, void>(tab, tabSize, &addOne);
+	iter<int, void>(tab, tabSize, &print);
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Let's set the tab to zero" << std::endl;
-	iter(tab, tabSize, &setToZero);
-	iter(tab, tabSize, &print);
+	iter<int, void>(tab, tabSize, &setToZero);
+	iter<int, void>(tab, tabSize, &print);
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Let's print strTab[]" << std::endl;
-	iter(strTab, strTabSize, &print);
+	iter<std::string, void>(strTab, strTabSize, &print);
 	std::cout << std::endl;
 }

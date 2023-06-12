@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:15:38 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/08 13:34:12 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:19:47 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 		std::cout << a << ' ';
 	}
 
-	template <typename T>
-	void	iter(T *tab, size_t size, void (function)(T &))
+	template <typename T, typename RT>
+	void	iter(T *tab, size_t size, RT (function)(T &))
 	{
 		size_t	i;
 
