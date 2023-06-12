@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:25:10 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/12 15:11:32 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:18:40 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 	#define EASYFIND_HPP
 
 	template <typename T>
-	int	easyfind(T &container, int nb)
+	typename T::iterator	easyfind(T &container, int nb)
 	{
-		for (int i = 0; container.begin() + i != container.end(); i++)
+		typename T::iterator	it;
+
+		for (it = container.begin(); it != container.end(); it++)
 		{
-			if (container.begin()[i] == nb)
-				return (i);
+			if (*it == nb)
+				return (it);
 		}
-		return (-1);
+		return (container.end());
 	}
 
 #endif

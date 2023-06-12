@@ -6,22 +6,22 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 12:23:48 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/12 16:04:55 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:21:15 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <array>
 #include <vector>
 #include <queue>
-#include <map>
 #include <list>
-#include <stack>
 #include <algorithm>
 #include <iostream>
 #include "easyfind.hpp"
 
 int	main(void)
 {
-	std::stack<int>	stk;
+	std::array<int>	ary;
+	std::vector<int>	stk;
 
 	stk.push(4);
 	stk.push(8);
