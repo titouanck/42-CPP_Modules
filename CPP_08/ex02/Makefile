@@ -1,4 +1,4 @@
-SRCS = main.cpp Span.cpp
+SRCS = main.cpp Mutantstack.cpp
 SRCS_PATH = srcs/
 INC = -I inc/
 
@@ -14,7 +14,7 @@ NAME = Containers
 
 all: ${NAME}
 
-${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/Span.hpp
+${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/Mutantstack.hpp
 		mkdir -p ${OBJS_PATH}
 		${CC} ${CFLAGS} -c $< -o $@ ${INC}
 
