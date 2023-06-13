@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:58:32 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/13 14:21:42 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:39:25 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,82 +25,86 @@ Span::~Span(void)
 
 Span	&Span::operator=(const Span &obj)
 {
-	set = obj.set;
+	vect = obj.vect;
 	return (*this);
 }
 
 void	Span::addNumber(int nb)
 {
-	if (set.size() < N)
-		set.insert(nb);
+	if (vect.size() < N)
+		vect.push_back(nb);
 	else
-		throw (Span::Exception("Container full, impossible to store another integer."));
+		throw (Span::Exception("Impossible to store another integer."));
+}
+
+void	Span::addNumber(unsigned int n, int value)
+{
+	if (vect.size() + n > N)
+		throw (Span::Exception("Not enough space availaible."));
+	vect.insert(vect.end(), n, value);
+}
+
+void	Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	std::vector<int>::iterator	it;
+	unsigned int							i;
+
+	it = begin;
+	i = vect.size();
+	while (it != end && i < N)
+	{
+		i++;
+		it++;
+	}
+	if (it != end)
+		throw (Span::Exception("Not enough space availaible."));
+	vect.insert(vect.end(), begin, end);
 }
 
 int	Span::shortestSpan(void)
 {
-	int						left;
-	int						right;
 	int						shortest;
+	std::set<int>			s(vect.begin(), vect.end());
 	std::set<int>::iterator	it;
 	std::set<int>::iterator	itNext;
 
-	if (set.size() < 2)
+	if (vect.size() < 2)
 		throw (Span::Exception("Not enough numbers in container to find a span."));
+	if (vect.size() > s.size())
+		return (0);
 	shortest = INT_MAX;
-	it = set.begin();
-	itNext = set.begin();
+	it = s.begin();
+	itNext = s.begin();
 	itNext++;
-	while (itNext != set.end())
+	while (itNext != s.end())
 	{
 		if (*itNext - *it < shortest)
-		{
-			left = *it;
-			right = *itNext;
-			shortest = right - left;
-		}
-		it++;
+			shortest = *itNext - *it;
+		it = itNext;
 		itNext++;
 	}
-	std::cout << '[' << left << "-" << right << ']' << std::endl;
 	return (shortest);
 }
 
 int	Span::longestSpan(void)
 {
-	int						left;
-	int						right;
-	int						longest;
-	std::set<int>::iterator	it;
-	std::set<int>::iterator	itNext;
+	std::set<int>			s(vect.begin(), vect.end());
+	std::set<int>::iterator	smallest;
+	std::set<int>::iterator	largest;
 
-	if (set.size() < 2)
+	if (vect.size() < 2)
 		throw (Span::Exception("Not enough numbers in container to find a span."));
-	longest = INT_MIN;
-	it = set.begin();
-	itNext = set.begin();
-	itNext++;
-	while (itNext != set.end())
-	{
-		if (*itNext - *it > longest)
-		{
-			left = *it;
-			right = *itNext;
-			longest = right - left;
-		}
-		it++;
-		itNext++;
-	}
-	std::cout << '[' << left << "-" << right << ']' << std::endl;
-	return (longest);
+	smallest = s.begin();
+	largest = s.end();
+	return (*(--largest) - *smallest);
 }
 
 void	Span::print(void)
 {
-	std::set<int>::iterator	it;
+	std::vector<int>::iterator	it;
 	
 	std::cout << "Numbers: ";
-	for (it = set.begin(); it != set.end(); it++)
+	for (it = vect.begin(); it != vect.end(); it++)
 		std::cout << *it << " ";
 	std::cout << std::endl;
 }

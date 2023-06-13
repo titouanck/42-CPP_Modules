@@ -49,11 +49,12 @@
 		"optional": "cpp",
 		"ranges": "cpp",
 		"span": "cpp",
-		"set": "cpp",
+		"vect": "cpp",
 		"cerrno": "cpp",
 		"climits": "cpp",
 		"ios": "cpp",
 		"queue": "cpp",
-		"stack": "cpp"
+		"stack": "cpp",
+		"set": "cpp"
 	}
 }

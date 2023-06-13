@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:58:50 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/13 13:46:39 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:44:11 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 	#define SPAN_HPP
 
 	#include <iostream>
+	#include <vector>
 	#include <set>
 	#include <algorithm>
 	#include <climits>
@@ -23,7 +24,7 @@
 		private:
 			class Exception;
 			const unsigned int	N;
-			std::set<int>		set;
+			std::vector<int>	vect;
 			
 		public:
 			Span(unsigned int sz);
@@ -31,6 +32,8 @@
 			~Span(void);
 			Span	&operator=(const Span &obj);
 			void	addNumber(int nb);
+			void	addNumber(unsigned int n, int value);
+			void	addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 			int		shortestSpan(void);
 			int		longestSpan(void);
 			void	print(void);
