@@ -48,6 +48,12 @@
 		"map": "cpp",
 		"optional": "cpp",
 		"ranges": "cpp",
-		"span": "cpp"
+		"span": "cpp",
+		"set": "cpp",
+		"cerrno": "cpp",
+		"climits": "cpp",
+		"ios": "cpp",
+		"queue": "cpp",
+		"stack": "cpp"
 	}
 }
