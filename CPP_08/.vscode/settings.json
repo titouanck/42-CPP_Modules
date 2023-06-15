@@ -55,6 +55,7 @@
 		"ios": "cpp",
 		"queue": "cpp",
 		"stack": "cpp",
-		"set": "cpp"
+		"set": "cpp",
+		"*.tpp": "cpp"
 	}
 }

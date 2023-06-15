@@ -1,4 +1,4 @@
-SRCS = main.cpp Mutantstack.cpp
+SRCS = main.cpp
 SRCS_PATH = srcs/
 INC = -I inc/
 
@@ -10,11 +10,11 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 vpath %.cpp ${SRCS_PATH}
 
-NAME = Containers
+NAME = MutantStack
 
 all: ${NAME}
 
-${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/Mutantstack.hpp
+${OBJS}: ${OBJS_PATH}/%.o: %.cpp Makefile inc/MutantStack.hpp inc/MutantStack.tpp
 		mkdir -p ${OBJS_PATH}
 		${CC} ${CFLAGS} -c $< -o $@ ${INC}
 
