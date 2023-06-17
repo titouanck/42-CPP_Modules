@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 15:15:51 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/16 16:00:03 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:04:02 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 	#include <string>
 	#include <fstream>
 	#include <map>
+	#include <cstdlib>
 
 	class BitcoinExchange
 	{
@@ -24,8 +25,8 @@
 			class 							Exception;
 			std::map<std::string, float>	database;
 	
-			std::string		_getKey(std::string line);
-			float			_getValue(std::string line);
+			static std::string	_getKey(std::string line);
+			static float		_getValue(std::string line);
 
 		public:
 			BitcoinExchange(const char *databaseName);
@@ -33,6 +34,8 @@
 			~BitcoinExchange(void);
 			
 			BitcoinExchange	&operator=(const BitcoinExchange &obj);
+			float			nearestLowValue(std::string date);
+			static bool		correctlyFormatted(std::string inputDate);
 	};
 
 	class BitcoinExchange::Exception : public std::exception
