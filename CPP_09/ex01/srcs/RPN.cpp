@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:28 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/06/17 15:58:22 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:25:52 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	RPN(std::string str)
 {
-	std::deque<int>		numbers;
+	std::stack<int>		numbers;
 	size_t				i;
 	int					result;
 
@@ -27,7 +27,7 @@ bool	RPN(std::string str)
 	while (str[i])
 	{
 		if (isdigit(str[i]))
-			numbers.push_back(str[i] - '0');
+			numbers.push(str[i] - '0');
 		else 
 		{
 			if (numbers.empty())
@@ -35,22 +35,22 @@ bool	RPN(std::string str)
 			switch (str[i])
 			{
 				case '*':
-					result *= numbers.back();
+					result *= numbers.top();
 					break ;
 				case '/':
-					result /= numbers.back();
+					result /= numbers.top();
 					break ;
 				case '+':
-					result += numbers.back();
+					result += numbers.top();
 					break ;
 				case '-':
-					result -= numbers.back();
+					result -= numbers.top();
 					break ;
 				default:
 					return (std::cerr << "Error\n", false);
 					break ;
 			}
-			numbers.pop_back();
+			numbers.pop();
 		}
 		if (str[i + 1] && !isspace(str[i + 1]))
 			return (std::cerr << "Error\n", false);

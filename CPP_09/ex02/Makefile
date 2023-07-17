@@ -1,4 +1,4 @@
-SRCS = main.cpp PmergeMe.cpp
+SRCS = main.cpp PmergeMe.cpp utils.cpp
 SRCS_PATH = srcs/
 INC = -I inc/
 
@@ -10,7 +10,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 vpath %.cpp ${SRCS_PATH}
 
-NAME = RPN
+NAME = PmergeMe
 
 all: ${NAME}
 
