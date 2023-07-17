@@ -6,7 +6,7 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 16:28:48 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/07/17 16:37:13 by tchevrie         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:20:33 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ Tcontainer	recursivity(Tcontainer vct)
 	leftVct = recursivity(leftVct);
 	rightVct = recursivity(rightVct);
 
-	std::cout << "A: ";
-	printContainer(leftVct);
-	std::cout << "B: ";
-	printContainer(rightVct);
-
 	i = 1;
 	j = 1;
 	while (j < rightVct.size())
@@ -60,8 +55,6 @@ Tcontainer	recursivity(Tcontainer vct)
 	}
 	if (rightVct.size() % 2 != 0)
 		leftVct.push_back(*(rightVct.end() - 1));
-	std::cout << "FUSION: ";
-	printContainer(leftVct);
 	return (leftVct);
 }
 
@@ -70,10 +63,6 @@ void	sort(Tcontainer &vct)
 {
 	if (vct.size() < 2)
 		return ;
-	std::cout << "\nORIGINAL: ";
-	std::cout << BLUE;
-	printContainerDefault(vct);
-	std::cout << NC;
 	for (typename Tcontainer::iterator it = vct.begin(); it != vct.end(); it += 2)
 	{
 		if (it + 1 == vct.end())
@@ -81,14 +70,8 @@ void	sort(Tcontainer &vct)
 		if (*it > *(it + 1))
 			swap(&(*it), &(*(it + 1)));
 	}
-	std::cout << "\nPAIRES TRIÉES: ";
-	printContainer(vct);
-	std::cout << '\n';
 	vct = recursivity(vct);
 	
-	std::cout << "\nAPRES RECURSIVITE: ";
-	printContainer(vct);
-
 	Tcontainer	oddVct(vct);
 	Tcontainer	evenVct(vct);
 	
@@ -99,11 +82,6 @@ void	sort(Tcontainer &vct)
 		else
 			evenVct.erase(evenVct.begin() + i);
 	}
-
-	std::cout << "\nODD: ";
-	printContainerRed(oddVct);
-	std::cout << "EVEN: ";
-	printContainerDefault(evenVct);
 
 	while (evenVct.size() > 0)
 	{
@@ -138,11 +116,49 @@ int	PmergeMeAtoi(std::string arg)
 	return (nbr);
 }
 
-bool	PmergeMe(char **args)
+struct timeval	getTime(void)
+{
+	struct timeval	currentTime;
+
+	gettimeofday(&currentTime, NULL);
+	return (currentTime);
+}
+
+void prints(int argc, std::vector<int> vct, std::deque<int> dqe)
+{
+	struct timeval		vctBeginTime;
+	struct timeval		vctEndTime;
+	struct timeval		dqeBeginTime;
+	struct timeval		dqeEndTime;
+	unsigned long long	diff;
+
+	std::cout << "Before: ";
+	printContainerDefault(vct);
+	vctBeginTime = getTime();
+	sort(vct);
+	vctEndTime = getTime();
+	dqeBeginTime = getTime();
+	sort(dqe);
+	dqeEndTime = getTime();
+	std::cout << "After:  ";
+	printContainerDefault(vct);
+	diff =  (vctEndTime.tv_sec - vctBeginTime.tv_sec);
+	for (int i = 0; i < 6; i++)
+		diff *= 10;
+	diff += (vctEndTime.tv_usec - vctBeginTime.tv_usec);
+	std::cout << "Time to process a range of " << argc << " elements with std::vector: "  << diff << " us\n";
+	diff =  (dqeEndTime.tv_sec - dqeBeginTime.tv_sec);
+	for (int i = 0; i < 6; i++)
+		diff *= 10;
+	diff += (dqeEndTime.tv_usec - dqeBeginTime.tv_usec);
+	std::cout << "Time to process a range of " << argc << " elements with std::deque:  "  << diff << " us\n";
+}
+
+bool	PmergeMe(int argc, char **args)
 {
 	std::vector<int>	vct;
 	std::deque<int>		dqe;
-	int							nbr;
+	int					nbr;
 
 	for (int i = 0; args[i]; i++)
 	{
@@ -160,19 +176,6 @@ bool	PmergeMe(char **args)
 			return (false);
 		}
 	}
-	sort(vct);
-	std::cout << "\nSORTED: ";
-	std::cout << BLUE;
-	printContainerDefault(vct);
-	std::cout << NC;
-	
-	std::cout << "\n----------\n";
-
-	sort(dqe);
-	std::cout << "\nSORTED: ";
-	std::cout << BLUE;
-	printContainerDefault(dqe);
-	std::cout << NC;
-
+	prints(argc, vct, dqe);
 	return (true);
 }
