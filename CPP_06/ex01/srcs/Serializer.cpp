@@ -6,80 +6,49 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:17:31 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/12/19 11:52:08 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/19 15:28:55 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
 
+/* PRIVATE ****************************************************************** */
+
+Serializer::Serializer()
+{
+}
+
+Serializer::Serializer(const Serializer &copy)
+{
+	*this = copy;
+}
+
+Serializer &Serializer::operator=(const Serializer &copy)
+{
+	(void)	copy;
+	return *this;
+}
+
+Serializer::~Serializer()
+{
+}
+
+/* PUBLIC ******************************************************************* */
+
+uintptr_t	Serializer::serialize(Data* ptr)
+{
+	uintptr_t	r;
+
+	r = reinterpret_cast<uintptr_t>(ptr);
+	return r;
+}
+
+Data	*Serializer::deserialize(uintptr_t raw)
+{
+	Data	*r;
+
+	r = reinterpret_cast<Data *>(raw);
+	return r;
+}
+
 /* ************************************************************************** */
-
-Data Serializer::_lstData = {};
-
-/* ************************************************************************** */
-
-Serializer::Serializer(Data *ptr)
-{
-	Serializer::serialize(ptr);
-}
-
-Serializer::Serializer(const Serializer &obj)
-{
-	(void) obj;
-} 
-
-Serializer::~Serializer(void)
-{
-	
-}
-
-/* ************************************************************************** */
-
-Serializer	&Serializer::operator=(const Serializer &obj)
-{
-	(void)	obj;
-	return (*this);
-}
-
-unsigned long int	Serializer::serialize(Data *ptr)
-{
-	Data	*current;
-
-	if (ptr)
-	{
-		current = &_lstData;
-		while (current->next)
-		{
-			if (current->next == ptr)
-				return (ptr->serialNumber);
-			current = current->next;
-		}
-		current->next = ptr;
-		current->next->next = NULL;
-		return (ptr->serialNumber);
-	}
-	else
-		throw (Serializer::NullPointer("Function takes the address of a Data element as argument."));
-}
-
-Data	*Serializer::deserialize(unsigned long int serialNumber)
-{
-	Data	*current;
-
-		current = &_lstData;
-		while (current->next)
-		{
-			if (current->next->serialNumber == serialNumber)
-				return (current->next);
-			current = current->next;
-		}
-		return (NULL);	
-}
-
-Serializer::NullPointer::NullPointer(const char *exception) : _exception(exception)
-{}
-
-const char	*Serializer::NullPointer::what(void) const throw()
-{
-	return (_exception);
-}

@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 19:17:42 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/12/19 15:35:12 by titouanck        ###   ########.fr       */
+/*   Created: 2023/12/19 15:27:15 by titouanck         #+#    #+#             */
+/*   Updated: 2023/12/19 15:41:00 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_HPP
-	#define SERIALIZER_HPP
-
-	#include <iostream>
-	#include <string>
-	#include <stdint.h>
-	#include "Data.hpp"
+#ifndef DATA_HPP
+	#define DATA_HPP
 
 /* ************************************************************************** */
 
-class Serializer
+typedef struct s_Data
 {
-	private:
-		Serializer();
-		Serializer(const Serializer &copy);
-		Serializer &operator=(const Serializer &copy);
-		~Serializer();
-
-	public:
-		static uintptr_t	serialize(Data* ptr);
-		static Data			*deserialize(uintptr_t raw);
-};
+	std::string	Gentle;
+	std::string	Mates;
+}				Data;
 
 /* ************************************************************************** */
 
