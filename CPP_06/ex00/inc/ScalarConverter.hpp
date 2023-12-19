@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 12:05:34 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/19 11:48:01 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/19 11:58:48 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,14 @@
 
 class ScalarConverter
 {
+	private:
+		ScalarConverter();
+		ScalarConverter(const ScalarConverter &copy);
+		ScalarConverter &operator=(const ScalarConverter &copy);
+		~ScalarConverter();
+
 	public:
-		static bool	convert(std::string literal);	
+		static bool	convert(std::string literal);
 };
 
 #endif

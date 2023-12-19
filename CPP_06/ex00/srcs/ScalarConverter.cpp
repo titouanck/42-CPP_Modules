@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 12:07:56 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/19 10:32:05 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/19 12:01:03 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,27 @@ static bool	getInt(std::string literal, int &i);
 static bool	getFloat(std::string literal, float &f);
 static bool	getDouble(std::string literal, double &d);
 
+long	sign;
+
 /* ************************************************************************** */
 
-long	sign;
+ScalarConverter::ScalarConverter()
+{
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &copy)
+{
+	(void)	copy;
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &copy)
+{
+	(void)	copy;
+	return *this;
+}
+ScalarConverter::~ScalarConverter()
+{
+}
 
 /* ************************************************************************** */
 
