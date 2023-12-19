@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:15:08 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/18 19:02:40 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/19 10:49:42 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	printConversions(char &c)
 
 void	printConversions(int &i)
 {
-	if (33 <= i && i <= 126)
+	if (32 <= i && i <= 126)
 		std::cout << "char: " << static_cast<char>(i) << std::endl;
 	else if (-128 <= i && i <= 127)
 		std::cout << "char: Not displayable" << std::endl;
@@ -43,7 +43,7 @@ void	printConversions(float &f)
 {
 	std::cout << std::fixed;
 
-	if (f == f && 33.0 <= f && f <= 126.0)
+	if (f == f && 32.0 <= f && f <= 126.0)
 		std::cout << "char: " << static_cast<char>(f) << std::endl;
 	else if (f == f && -128.0 <= f && f <= 127.0)
 		std::cout << "char: Not displayable" << std::endl;
@@ -64,7 +64,7 @@ void	printConversions(double &d)
 {
 	std::cout << std::fixed;
 
-	if (d == d && 33.0 <= d && d <= 126.0)
+	if (d == d && 32.0 <= d && d <= 126.0)
 		std::cout << "char: " << static_cast<char>(d) << std::endl;
 	else if (d == d && -128.0 <= d && d <= 127.0)
 		std::cout << "char: Not displayable" << std::endl;
@@ -77,8 +77,12 @@ void	printConversions(double &d)
 	else
 		std::cout << "int: impossible" << std::endl;
 	
-	if (d > FLT_MY_MIN && FLT_MAX > d)
+	if ((d > FLT_MY_MIN && FLT_MAX > d) || d != d)
 		std::cout << "float: " << std::setprecision(1) << static_cast<double>(d) << "f" << std::endl;
+	else if (d < FLT_MY_MIN)
+		std::cout << "float: -inff" << std::endl;
+	else if (d > FLT_MAX)
+		std::cout << "float: inff" << std::endl;
 	else
 		std::cout << "float: impossible" << std::endl;
 	

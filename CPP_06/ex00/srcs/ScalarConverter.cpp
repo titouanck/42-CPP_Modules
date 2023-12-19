@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 12:07:56 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/18 19:05:05 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/19 10:32:05 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static bool	getChar(std::string literal, char &c)
 	else
 		c = -1;
 
-	if (c >= 33 && 126 >= c)
+	if (c >= 32 && 126 >= c)
 		return true;
 	else
 		return false;
