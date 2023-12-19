@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 12:07:56 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/19 12:01:03 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/19 12:01:41 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &copy)
 	(void)	copy;
 	return *this;
 }
+
 ScalarConverter::~ScalarConverter()
 {
 }
