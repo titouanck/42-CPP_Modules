@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:16:46 by tchevrie          #+#    #+#             */
-/*   Updated: 2023/12/19 15:40:16 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/20 12:45:36 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main()
 	/* ***************************************************** */
 	
 	if (&data == r)
-		std::cout << "mission accomplished !" \
+		std::cout << "mission accomplished ! " \
 		<< "data's content: " << r->Gentle << " & " << r->Mates \
 		<< std::endl;
 	else
