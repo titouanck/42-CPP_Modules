@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 12:10:04 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/19 11:52:54 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/20 12:43:17 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ std::string	charTests[]		= {"A", "z", "'4'", "+", "-"};
 std::string	intTests[]		= {"42", "0", "2147483647", "-2147483648"};
 std::string	floatTests[]	= {"0.0f", "-4.2f", "4.2f", "-inff", "+inff", "nanf"};
 std::string	doubleTests[]	= {"0.0", "-4.2", "4.2", "-inf", "+inf", "nan"};
-std::string	badTests[]		= {"'42'", "   ", "42euh"};
+std::string	otherTests[]	= {"'42'", "   ", "42euh"};
 
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ int	main(int argc, char **argv)
 		}
 		std::cout << "/* OTHER ********************* */" << std::endl << std::endl;
 
-		size = sizeof(badTests) / sizeof(badTests[0]);
+		size = sizeof(otherTests) / sizeof(otherTests[0]);
 		for (int i = 0; i < size; i++)
 		{
-			ScalarConverter::convert(badTests[i]);
+			ScalarConverter::convert(otherTests[i]);
 			std::cout << std::endl;
 		}
 		std::cout << "/* *************************** */" << std::endl;
