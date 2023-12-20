@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 15:21:43 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/20 16:56:38 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/20 17:23:01 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 
 int	main(void)
 {
-	Array<int>	myArray(29);
-	Array<int>	myOtherArray(9);
+	Array<std::string>	myArray(29);
+	Array<std::string>	myOtherArray(9);
 
-
+	myArray[0] = "Podasai";
+	std::cout << myArray[-1] << std::endl;
 }
 
 /* ************************************************************************** */
