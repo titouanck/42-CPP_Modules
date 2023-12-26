@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 15:21:19 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/20 17:26:59 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/26 11:23:28 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,16 @@ class Array
 		~Array();
 		
 		Array(unsigned int n);
+		
 		T &operator[](size_t pos);
-
-		unsigned int	size();
+		unsigned int	size() const;
 
 	private:
-		void			allocate(unsigned int n);
+		void	allocate(unsigned int n);
 		
 		T		*_array;
 		size_t	_length;
 };
-
 
 /* ************************************************************************** */
 
