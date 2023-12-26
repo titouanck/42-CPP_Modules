@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 15:21:19 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/26 11:23:28 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/26 12:03:58 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ class Array
 		unsigned int	size() const;
 
 	private:
-		void	allocate(unsigned int n);
-		
 		T		*_array;
 		size_t	_length;
+
+		void	allocate(unsigned int n);
 };
 
 /* ************************************************************************** */
