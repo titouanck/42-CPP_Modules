@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 15:21:43 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/26 11:54:04 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/29 17:10:39 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ int	main(void)
 	std::cout << BLUE "\n/* You MUST use the operator new[] to allocate memory. " \
 	<< "Preventive allocation (allocating memory in advance) is forbidden.  */\n" NC << std::endl;
 
-	std::cout << ITALIC "> see code <" << std::endl;
+	std::cout << ITALIC "> see code <" NC << std::endl;
 
 	/* ********************************************************************** */
 	
 	std::cout << BLUE "\n/* Elements can be accessed through the subscript operator: [ ]. */\n" NC << std::endl;
 
-	std::cout << ITALIC "> see code <" << std::endl;
+	std::cout << ITALIC "> see code <" NC << std::endl;
 
 	/* ********************************************************************** */
 	

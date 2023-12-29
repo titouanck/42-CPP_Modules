@@ -6,86 +6,106 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:37:39 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/20 15:13:32 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/29 17:11:57 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
 
-void	printString(std::string str);
-void	printInt(int nbr);
-void	printChar(char c);
-void	printFloat(float flt);
+#define BLUE "\033[34m"
+#define NC "\033[0m"
+
+/* PROTOTYPES *************************************************************** */
+
+void	myPrintString(std::string str);
+void	myPrintFloat(float flt);
 
 template <typename T>
-void	print(T toPrint);
+void	myPrint(T toPrint);
 
-/* ************************************************************************** */
+void	mainFromSubject();
+void	myMain();
+
+/* MAIN ********************************************************************* */
 
 int	main(void)
 {
+	std::cout << BLUE "/* Main from subject */" NC "\n" << std::endl;
+	mainFromSubject();
+
+	std::cout << "\n" BLUE "/* My main */" NC "\n" << std::endl;
+	myMain();
+}
+
+/* MAIN FROM THE SUBJECT **************************************************** */
+
+class Awesome
+{
+  public:
+    Awesome( void ) : _n( 42 ) { return; }
+    int get( void ) const { return this->_n; }
+  private:
+    int _n;
+};
+
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs )
+{
+  o << rhs.get();
+  return o;
+}
+
+template< typename T >
+void print( T& x )
+{
+  std::cout << x << std::endl;
+  return;
+}
+
+void	mainFromSubject()
+{
+  int tab[] = { 0, 1, 2, 3, 4 };
+  Awesome tab2[5];
+
+  iter( tab, 5, print<const int> );
+  iter( tab2, 5, print<Awesome> );
+}
+
+/* MY OWN MAIN ************************************************************** */
+
+void	myMain(void)
+{
 	std::string	tabStr[]	= {"Podasai", "Snayzy"};
-	int			tabNbr[]	= {29, 9};
-	char		tabChar[]	= {'#', 'M', '8', 'W', 'I', 'N'};
 	float		tabFlt[]	= {29.0f, 9.0f};
 	
-	std::cout << "/* ********************** */"<< std::endl << std::endl;
-
-	iter(tabStr, sizeof(tabStr) / sizeof(tabStr[0]), printString);
-	std::cout << std::endl << std::endl;
+	iter(tabStr, sizeof(tabStr) / sizeof(tabStr[0]), myPrintString);
+	std::cout << std::endl;
 	
-	iter(tabNbr, sizeof(tabNbr) / sizeof(tabNbr[0]), printInt);
-	std::cout << std::endl << std::endl;
-
-	iter(tabChar, sizeof(tabChar) / sizeof(tabChar[0]), printChar);
-	std::cout << std::endl << std::endl;
-
-	iter(tabFlt, sizeof(tabFlt) / sizeof(tabFlt[0]), printFloat);
+	iter(tabFlt, sizeof(tabFlt) / sizeof(tabFlt[0]), myPrintFloat);
 	std::cout << std::endl;
 	
 	std::cout << std::endl << "/* ********************** */"<< std::endl << std::endl;
 
-	iter(tabStr, sizeof(tabStr) / sizeof(tabStr[0]), print);
-	std::cout << std::endl << std::endl;
-	
-	iter(tabNbr, sizeof(tabNbr) / sizeof(tabNbr[0]), print);
-	std::cout << std::endl << std::endl;
-
-	iter(tabChar, sizeof(tabChar) / sizeof(tabChar[0]), print);
-	std::cout << std::endl << std::endl;
-
-	iter(tabFlt, sizeof(tabFlt) / sizeof(tabFlt[0]), print);
+	iter(tabStr, sizeof(tabStr) / sizeof(tabStr[0]), myPrint<std::string>);
 	std::cout << std::endl;
 
-	std::cout << std::endl << "/* ********************** */"<< std::endl;
+	iter(tabFlt, sizeof(tabFlt) / sizeof(tabFlt[0]), myPrint<float>);
+	std::cout << std::endl;
 }
 
 /* ************************************************************************** */
 
-void	printString(std::string str)
+void	myPrintString(std::string str)
 {
 	std::cout << str << ", ";
 }
 
-void	printInt(int nbr)
-{
-	std::cout << nbr << ", ";
-}
-
-void	printChar(char c)
-{
-	std::cout << c << ", ";
-}
-
-void	printFloat(float flt)
+void	myPrintFloat(float flt)
 {
 	std::cout << flt << ", ";
 }
 
-/* ************************************************************************** */
-
 template <typename T>
-void	print(T toPrint)
+void	myPrint(T toPrint)
 {
 	std::cout << toPrint << ", ";
 }

@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:47:16 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/29 15:52:14 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/29 15:56:09 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ sp.debugPrint();
 	std::vector<int>	tab2;
 	Span	sp2(10);
 
-	tab2.addNumber(tab.begin(), tab.end())
+	tab2.insert(tab2.end(), tab.begin(), tab.end());
+	for(std::vector<int>::iterator it = tab2.begin(); it != tab2.end(); it++)
+	{
+		
+	}
 }
 
 /* ************************************************************************** */
