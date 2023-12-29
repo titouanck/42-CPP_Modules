@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:36:54 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/20 15:17:57 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/29 15:54:28 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 /* ************************************************************************** */
 
-template <typename T>
-void	iter(T *tab, size_t length, void (function)(T))
+template <typename T, typename F>
+void	iter(T *tab, size_t length, F function)
 {
 	size_t	i;
 
