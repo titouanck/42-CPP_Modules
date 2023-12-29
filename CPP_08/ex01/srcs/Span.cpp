@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 12:31:18 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/29 15:50:10 by titouanck        ###   ########.fr       */
+/*   Updated: 2023/12/29 18:59:51 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Span	&Span::operator=(const Span &copy)
 	if (copy._numbers.size() <= this->_N)
 		this->_numbers = copy._numbers;
 	else
-		throw std::runtime_error("Span: the destination object has less capacity than necessary to accommodate the source object's numbers");
+		throw std::runtime_error("span, exception: the destination object has less capacity than necessary to accommodate the source object's numbers");
 	return	*this;
 }
 
@@ -49,7 +49,7 @@ void	Span::addNumber(int number)
 	if (this->_numbers.size() < this->_N)
 		this->_numbers.insert(this->_numbers.end(), number);
 	else
-		throw std::runtime_error("Span: object has already reached its maximum capcity");
+		throw std::runtime_error("span, exception: object has already reached its maximum capacity");
 }
 
 void	Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last)
@@ -64,10 +64,10 @@ void	Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterato
 		tmp++;
 		size++;
 	}
-	if (this->_numbers.size() + size < this->_N)
+	if (this->_numbers.size() + size <= this->_N)
 		this->_numbers.insert(this->_numbers.end(), first, last);
 	else
-		throw std::runtime_error("Span: object do not have enough space to store that many numbers");
+		throw std::runtime_error("span, exception: object do not have enough space to store that many numbers");
 }
 
 /* ************************************************************************** */
@@ -79,7 +79,7 @@ unsigned int	Span::shortestSpan()
 	std::vector<int>::iterator	nextIt;	
 
 	if (this->_numbers.size() < 2)
-		throw std::runtime_error("Span: Not enough numbers to find a span (< 2)");
+		throw std::runtime_error("span, exception: Not enough numbers to find a span (< 2)");
 	std::sort(this->_numbers.begin(), this->_numbers.end());
 	
 	previousIt	= this->_numbers.begin();
@@ -99,18 +99,19 @@ unsigned int	Span::shortestSpan()
 unsigned int	Span::longestSpan()
 {
 	if (this->_numbers.size() < 2)
-		throw std::runtime_error("Span: Not enough numbers to find a span (< 2)");
+		throw std::runtime_error("span, exception: Not enough numbers to find a span (< 2)");
 	std::sort(this->_numbers.begin(), this->_numbers.end());
 	
 	return *(this->_numbers.end() - 1) - *this->_numbers.begin();
 }
 
-void	Span::debugPrint()
+void	Span::print()
 {
-	std::cout << "content: ";
 	for (std::vector<int>::iterator it = this->_numbers.begin(); it != this->_numbers.end(); it++)
 	{
-		std::cout << *it << ", ";
+		std::cout << *it;
+		if (it + 1 != this->_numbers.end())
+			std::cout << ", ";
 	}
 	std::cout << std::endl;
 }

@@ -1,48 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   comments.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 16:47:52 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/29 18:47:23 by titouanck        ###   ########.fr       */
+/*   Created: 2023/12/29 18:23:57 by titouanck         #+#    #+#             */
+/*   Updated: 2023/12/29 18:54:15 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-	#define SPAN_HPP
+#ifndef COMMENTS_HPP
+	#define COMMENTS_HPP
 
-	#include <cstdlib>
-	#include <vector>
-	#include <algorithm>
-	#include <stdexcept>
 	#include <string>
 	#include <iostream>
 
 /* ************************************************************************** */
 
-class Span
-{
-	public:
-		Span(const Span &copy);
-		Span &operator=(const Span &copy);
-		~Span();
+std::string	formatComment(std::string str, unsigned int n);
+std::string	formatComment(std::string str);
 
-		Span(unsigned int N);
+void		comment(std::string str);
+void		_comment(std::string str);
+void		comment_(std::string str);
+void		_comment_(std::string str);
 
-		void			addNumber(int number);
-		void			addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last);
-		unsigned int	shortestSpan();
-		unsigned int	longestSpan();
-		void			print();
-
-	private:
-		Span();
-
-		std::vector<int>	_numbers;
-		const unsigned int	_N;
-};
+void		comment(std::string str, unsigned int n);
+void		_comment(std::string str, unsigned int n);
+void		comment_(std::string str, unsigned int n);
+void		_comment_(std::string str, unsigned int n);
 
 /* ************************************************************************** */
 
