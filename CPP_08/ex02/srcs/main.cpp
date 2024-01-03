@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 11:50:18 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/03 13:15:27 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/03 13:33:18 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ int	main(void)
 	_comment_("");
 
 	std::stack<int>		stk;
-	MutantStack<int>	msCopy(stk);
 
-	msCopy.push(4);
-	msCopy.push(8);
-	msCopy.push(15);
-	msCopy.push(16);
-	msCopy.push(23);
-	msCopy.push(42);
+	stk.push(4);
+	stk.push(8);
+	stk.push(15);
+	stk.push(16);
+	stk.push(23);
+	stk.push(42);
+
+	MutantStack<int>	msCopy(stk);
 
 	for (std::deque<int>::iterator it = msCopy.begin(); it != msCopy.end(); it++)
 	{
