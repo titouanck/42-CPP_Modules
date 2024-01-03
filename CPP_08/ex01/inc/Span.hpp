@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:47:52 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/29 18:47:23 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/03 11:43:26 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class Span
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
 		void			print();
+		size_t			getSize();
 
 	private:
 		Span();

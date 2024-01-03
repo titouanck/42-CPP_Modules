@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 12:31:18 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/29 18:59:51 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/03 11:43:21 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,11 @@ void	Span::print()
 			std::cout << ", ";
 	}
 	std::cout << std::endl;
+}
+
+size_t	Span::getSize()
+{
+	return this->_numbers.size();
 }
 
 /* ************************************************************************** */

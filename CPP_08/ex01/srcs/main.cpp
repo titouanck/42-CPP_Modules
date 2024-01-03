@@ -6,20 +6,34 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 16:47:16 by titouanck         #+#    #+#             */
-/*   Updated: 2023/12/29 19:14:17 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/03 11:45:31 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 #include "comments.hpp"
 
-void	mainFromTheSubject();
+/* ************************************************************************** */
+
+void	mainFromTheSubject()
+{
+	Span sp = Span(5);
+
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+}
 
 /* ************************************************************************** */
 
 int main()
 {
-	comment("Tests from the subject's main");
+	comment_("Tests from the subject's main");
 	mainFromTheSubject();
 
 	/* ********************************************************************** */
@@ -67,22 +81,20 @@ int main()
 	std::cout << "sp.print()        = "; sp.print();
 	std::cout << "sp.shortestSpan() = " << sp.shortestSpan() << std::endl;
 	std::cout << "sp.longestSpan()  = " << sp.longestSpan() << std::endl;
-}
 
-/* ************************************************************************** */
+	/* ********************************************************************** */
 
-void	mainFromTheSubject()
-{
-	Span sp = Span(5);
+	_comment_("Implement a member function to add many numbers to your Span in one call.");
 
-	sp.addNumber(6);
-	sp.addNumber(3);
-	sp.addNumber(17);
-	sp.addNumber(9);
-	sp.addNumber(11);
+	std::vector<int>	container;
 
-	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
+	container.insert(container.end(), 42000, 42);
+	
+	Span newSp(42000);
+	newSp.addNumber(container.begin(), container.end());
+	std::cout << "container.insert(container.end(), 42000, 42)" << std::endl;
+	std::cout << "newSp.addNumber(container.begin(), container.end())" << std::endl;
+	std::cout << "newSp.getSize() = " << newSp.getSize() << std::endl;
 }
 
 /* ************************************************************************** */
