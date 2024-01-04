@@ -3,6 +3,9 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 ##########################################################################
+# inc/BitcoinExchange.hpp  inc/date.hpp  inc/parsing.hpp				 
+# srcs/BitcoinExchange.cpp  srcs/date.cpp  srcs/main.cpp  srcs/parsing.cpp
+##########################################################################
 
 SRCS_PATH = srcs/
 SRCS_FILES = $(shell find srcs/ -name '*.cpp' -exec basename {} \;)

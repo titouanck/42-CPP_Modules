@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:46:25 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/04 16:49:22 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/04 17:54:57 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,27 @@ void	BitcoinExchange::print()
 	}
 }
 
-unsigned long int	BitcoinExchange::getExchangeRate(unsigned int date)
+float	BitcoinExchange::getExchangeRate(unsigned int date)
 {
-	(void)	date;
-	
+	std::map<unsigned int, float>::iterator it;
+
+	it = this->_database.begin();
+	if (it == this->_database.end() || date < it->first)
+		return 0;
+	while (it != this->_database.end())
+	{
+		if (date == it->first)
+			return it->second;
+		else if (date < it->first)
+			break ;
+		it++;
+	}
+	if (it != this->_database.begin())
+	{
+		it--;
+		return it->second;
+	}
+	return 0;
 }
 
 /* PUBLIC STATIC MEMBER FUNCTIONS ******************************************* */
@@ -87,6 +104,8 @@ unsigned int	BitcoinExchange::getDate(std::string str)
 		else
 			throw DATE_ERROR;
 	}
+	if (!existingDate(date))
+		throw DATE_ERROR;
 	return date;
 }
 
