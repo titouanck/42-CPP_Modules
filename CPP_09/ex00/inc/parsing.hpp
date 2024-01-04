@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:53:57 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/04 15:31:49 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/04 16:44:24 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 
 /* ************************************************************************** */
 
-bool	parsing(std::string filename);
+bool	parsing(BitcoinExchange db, std::string filename);
+bool	existingDate(unsigned int date);
 
 /* ************************************************************************** */
 

@@ -6,13 +6,11 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:46:25 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/04 15:52:40 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/04 16:49:22 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-
-#define DB_FORMAT_ERROR std::runtime_error("btc: could not open database file.")
 
 /* PUBLIC ******************************************************************** */
 
@@ -27,17 +25,17 @@ BitcoinExchange::BitcoinExchange(std::string filename)
 		throw std::runtime_error("btc: could not open database file.");
 	std::getline(file, line);
 	if (line.compare("date,exchange_rate") != 0)
-		throw DB_FORMAT_ERROR;
+		throw FORMAT_ERROR;
 	while (std::getline(file, line))
 	{
 		if (line.length() < 12 || line.c_str()[10] != ',')
-			throw DB_FORMAT_ERROR;
+			throw FORMAT_ERROR;
 		try
 		{
 			date  = BitcoinExchange::getDate(line.substr(0, 10));
 			value = BitcoinExchange::getValue(line.substr(11));
 			if (this->_database.find(date) != this->_database.end())
-				throw DB_FORMAT_ERROR;
+				throw FORMAT_ERROR;
 		}
 		catch (...)
 		{
@@ -51,6 +49,24 @@ BitcoinExchange::~BitcoinExchange()
 {
 }
 
+void	BitcoinExchange::print()
+{
+	std::map<unsigned int, float>::iterator	it;
+
+	it = this->_database.begin();
+	while (it != this->_database.end())
+	{
+		std::cout << "[" << it->first << "]" << " = " << it->second << std::endl;
+		it++;
+	}
+}
+
+unsigned long int	BitcoinExchange::getExchangeRate(unsigned int date)
+{
+	(void)	date;
+	
+}
+
 /* PUBLIC STATIC MEMBER FUNCTIONS ******************************************* */
 
 unsigned int	BitcoinExchange::getDate(std::string str)
@@ -59,7 +75,7 @@ unsigned int	BitcoinExchange::getDate(std::string str)
 
 	date = 0;
 	if (str.length() != 10)
-		throw std::runtime_error("btc: date not correctly formatted.");
+		throw DATE_ERROR;
 	for (unsigned int i = 0; str[i]; i++)
 	{
 		if ((i == 4 || i == 7) && str[i] == '-');
@@ -69,7 +85,7 @@ unsigned int	BitcoinExchange::getDate(std::string str)
 			date += str[i] - '0';
 		}
 		else
-			throw std::runtime_error("btc: date not correctly formatted.");
+			throw DATE_ERROR;
 	}
 	return date;
 }
@@ -83,7 +99,7 @@ float	BitcoinExchange::getValue(std::string str)
 	if (value >= 0 && ptr == str.c_str() + str.length())
 		return value;
 	else
-		throw std::runtime_error("btc: value not correctly formatted.");
+		throw VALUE_ERROR;
 }
 
 /* PRIVATE ****************************************************************** */
