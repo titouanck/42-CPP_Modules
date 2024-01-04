@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:46:25 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/04 17:54:57 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/04 18:07:12 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ BitcoinExchange::BitcoinExchange(std::string filename)
 BitcoinExchange::~BitcoinExchange()
 {
 }
+
+/* ************************************************************************** */
 
 void	BitcoinExchange::print()
 {
