@@ -6,26 +6,26 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:03:50 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/09 15:29:44 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/09 19:30:26 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
 struct Pair {
-	unsigned int	a;
-	unsigned int	b;
+	unsigned int						a;
+	unsigned int						b;
 };
 
 /* ************************************************************************** */
 
-static std::vector<unsigned int>	pairMerge(std::vector<Pair> left, std::vector<Pair> right)
+static std::vector<Pair>	pairMerge(std::vector<Pair> left, std::vector<Pair> right)
 {
-	std::vector<unsigned int>	container;
+	std::vector<Pair>	container;
 
 	while (left.size() && right.size())
 	{
-		if (left.begin()->a < right.begin()->b)
+		if (left.begin()->a < right.begin()->a)
 		{
 			container.insert(container.end(), *left.begin());
 			left.erase(left.begin());
@@ -53,7 +53,7 @@ static std::vector<unsigned int>	pairMerge(std::vector<Pair> left, std::vector<P
 
 /* ************************************************************************** */
 
-static std::vector<unsigned int>	pairMergeSort(std::vector<Pair> container)
+static std::vector<Pair>	pairMergeSort(std::vector<Pair> container)
 {
 	unsigned int size;
 	
@@ -61,28 +61,46 @@ static std::vector<unsigned int>	pairMergeSort(std::vector<Pair> container)
 	if (size < 2)
 		return container;
 
-	std::vector<unsigned int>	left;
-	std::vector<unsigned int>	right;
+	std::vector<Pair>	left;
+	std::vector<Pair>	right;
 
 	left.insert(left.end(), container.begin(), container.begin() + (size / 2));
 	right.insert(right.end(), container.begin() + (size / 2), container.end());
-	left  = mergeSort(left);
-	right = mergeSort(right);
-	return merge(left, right);
+	left  = pairMergeSort(left);
+	right = pairMergeSort(right);
+	return pairMerge(left, right);
 }
 
 /* ************************************************************************** */
 
+void	printContainer(std::vector<Pair> container)
+{
+	std::vector<Pair>::iterator it;
+
+	for (it = container.begin(); it != container.end(); it++)
+	{
+		if (it != container.begin())
+			std::cout << ", ";
+		std::cout << "[ " << it->a << ", " << it->b << " ]";
+	}
+	std::cout << std::endl;
+}
+
 std::vector<unsigned int>	mergeInsertionSort(std::vector<unsigned int> container)
 {
+	std::vector<unsigned int> 			sortedContainer;
 	std::vector<unsigned int>::iterator	it;
+	std::vector<unsigned int>::iterator	it_2;
+
+	unsigned int						steps;
+	(void)	steps;
+	unsigned int						totalSteps;
+	(void)	totalSteps;
 	
 	Pair								pair;
 	std::vector<Pair>					pairsContainer;
 	std::vector<Pair>::iterator			pairsIt;
 
-	// 1. Given an unsorted list, group the list into pairs. If the list is odd, the last element is unpaired.
-	// 2. Each pair is sorted (using a single comparison each) into what we will call [a b] pairs.
 	for (it = container.begin(); it != container.end() && it + 1 != container.end(); it += 2)
 	{
 		pair.a = *it;
@@ -91,8 +109,64 @@ std::vector<unsigned int>	mergeInsertionSort(std::vector<unsigned int> container
 			swap(pair.b, pair.a);
 		pairsContainer.insert(pairsContainer.end(), pair);
 	}
-	// 3. The pairs are sorted recursively based on the a of each, and we call the pairs [a1 b1], [a2 b2] etc. If the list was odd, the unpaired element is considered the last b.
-	pairMergeSort(pairsContainer);
+	printContainer(pairsContainer);
+	pairsContainer = pairMergeSort(pairsContainer);
+	std::cout << "<<1>>  -------------------------------------" << std::endl;
+	printContainer(pairsContainer);
+
+	for (pairsIt = pairsContainer.begin(); pairsIt != pairsContainer.end(); pairsIt++)
+		sortedContainer.insert(sortedContainer.end(), pairsIt->a);
+	std::cout << "<<2>>  -------------------------------------" << std::endl;
+	printContainer(sortedContainer);
+	
+	it = sortedContainer.begin() + 1;
+	pairsIt = pairsContainer.begin();
+		std::cout << "----------" << std::endl;
+	totalSteps = 0;
+	while (pairsIt != pairsContainer.end())
+	{
+		std::cout << "Current list: ";
+		printContainer(sortedContainer);
+		if (it != sortedContainer.end())
+			std::cout << "*it = " << *it << std::endl;
+		std::cout << "Number that we want to insert: " << pairsIt->b << std::endl;
+		steps = 0;
+		it_2 = it;
+		while (it_2 != sortedContainer.end() && pairsIt->b > *it_2)
+		{
+			steps++;
+			totalSteps++;
+			it_2++;
+		}
+		std::cout << "steps needed: " << steps << std::endl;
+		// next = it + 1;
+		if (steps)
+			it = sortedContainer.insert(it_2, pairsIt->b) - steps + 2;
+		else
+		{
+			std::cout << "ELSE" << std::endl;
+			it = sortedContainer.insert(it_2, pairsIt->b) + 2;
+		}
+		std::cout << "List now: ";
+		printContainer(sortedContainer);
+		std::cout << "----------" << std::endl;
+		pairsIt++;
+	}
+
+	// for (pairsIt = pairsContainer.begin(); pairsIt != pairsContainer.end() && it != sortedContainer.end(); pairsIt++)
+	// {
+	// 	it_2 = it;
+	// 	std::cout << "it2 = " << *it << std::endl;
+	// 	while (it != sortedContainer.end() && it_2 != sortedContainer.end() && pairsIt->b < *it_2)
+	// 		it_2++;
+	// 	sortedContainer.insert(it_2 + 1, pairsIt->b);
+	// 	std::cout << "<<3>> -------------------------------------" << std::endl;
+	// 	printContainer(sortedContainer);
+	// 	it++;
+	// }
+	std::cout << "-------------------------------------" << std::endl;
+	printContainer(sortedContainer);
+	std::cout << "-------------------------------------" << std::endl;
 	return container;
 }
 

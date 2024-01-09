@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:41:50 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/09 15:04:27 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/09 17:37:47 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	printContainer(C container)
 	for (it = container.begin(); it != container.end(); it++)
 	{
 		if (it != container.begin())
-		std::cout << ", ";
+			std::cout << ", ";
 		std::cout << *it;
 	}
 	std::cout << std::endl;
