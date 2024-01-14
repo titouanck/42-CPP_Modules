@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:18:04 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 11:50:50 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 12:44:32 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
 template<typename T>
 std::vector<T>	insert_pairs(std::vector<Pair<T> > &container, T *lastOddElement)
 {
-	std::cout << "Just entered insert_pairs() with: ";
-	for (typename std::vector<Pair<T> >::iterator it2 = container.begin(); it2 != container.end(); it2++)
-	{
-		std::cout << *it2 << ", ";
-	}
-	std::cout << std::endl << std::endl;
 	std::vector<T>								mainChain;
 	typename std::vector<Pair<T> >::iterator	it;
 	
@@ -39,21 +33,8 @@ std::vector<T>	insert_pairs(std::vector<Pair<T> > &container, T *lastOddElement)
 	}
 	if (lastOddElement)
 		mainChain.insert(binarySearch(mainChain.begin(), mainChain.end(), *lastOddElement), *lastOddElement);
-	std::cout << "Just added A's with: ";
-	for (typename std::vector<T>::iterator it2 = mainChain.begin(); it2 != mainChain.end(); it2++)
-	{
-		std::cout << *it2 << ", ";
-	}
-	std::cout << std::endl << std::endl;
-	// for (size_t i = 1; i < container.size(); i += 1)
-	// 	mainChain.insert(binarySearch(mainChain.begin(), mainChain.end(), container[i].get_b()), container[i].get_b());
-	
-	std::cout << std::endl << "INSERPRINT: ";
-	for (typename std::vector<T>::iterator it2 = mainChain.begin(); it2 != mainChain.end(); it2++)
-	{
-		std::cout << *it2 << ", ";
-	}
-	std::cout << std::endl;
+	for (size_t i = 1; i < container.size(); i += 1)
+		mainChain.insert(binarySearch(mainChain.begin(), mainChain.end(), container[i].get_b()), container[i].get_b());
 	
 	return mainChain;
 }
@@ -75,10 +56,8 @@ class recursivity
 
 		for (size_t i = 0; i + 1 < argContainerSize; i += 2)
 		{
-			std::cout << "Creating a pair for [" << argContainer[i] << ", " << argContainer[i + 1] << "]" << std::endl;
 			newContainerOfPairs.push_back(Pair<T>(argContainer[i], argContainer[i + 1]));
 			newContainerOfPairs[i / 2].sortDescending();
-			std::cout << newContainerOfPairs[i / 2] << std::endl;
 		}
 		lastOddElement = NULL;
 		if (argContainerSize % 2 != 0)
