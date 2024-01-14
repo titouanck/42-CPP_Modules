@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:18:04 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 12:44:32 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 13:09:22 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,37 @@
 
 /* ************************************************************************** */
 
+jacobsthal(unsigned int n1, unsigned int n2)
+{
+	return (n1 + 2 * n2);
+}
+
 template<typename T>
 std::vector<T>	insert_pairs(std::vector<Pair<T> > &container, T *lastOddElement)
 {
 	std::vector<T>								mainChain;
-	typename std::vector<Pair<T> >::iterator	it;
+	typename std::vector<T>::iterator			mainChainEnd;
+	typename std::vector<Pair<T> >::iterator	containerIt;
+	unsigned int	j_lower = 1;
+	unsigned int	j_upper = 1;
 	
 	mainChain.push_back(container[0].get_b());
 	mainChain.push_back(container[0].get_a());
-	if (container.size() == 1 && lastOddElement != NULL)
-		mainChain.insert(binarySearch(mainChain.begin(), mainChain.end(), *lastOddElement), *lastOddElement);
-	if (container.size() < 2)
-		return mainChain;
-	for (it = container.begin() + 1; it != container.end(); it += 1)
+
+	// INSERT ALL A'S, ONE AFTER ANOTHER
+	for (containerIt = container.begin() + 1; containerIt != container.end(); containerIt += 1)
 	{
-		mainChain.push_back(it->get_a());
+		mainChain.push_back(containerIt->get_a());
 	}
 	if (lastOddElement)
 		mainChain.insert(binarySearch(mainChain.begin(), mainChain.end(), *lastOddElement), *lastOddElement);
+	// INSERT ALL B'S, WITH BINARY SEARCH
 	for (size_t i = 1; i < container.size(); i += 1)
+	{
+		mainChainEnd = mainChain.end();
+		if ()
 		mainChain.insert(binarySearch(mainChain.begin(), mainChain.end(), container[i].get_b()), container[i].get_b());
+	}
 	
 	return mainChain;
 }
