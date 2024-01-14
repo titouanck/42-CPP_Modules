@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
+/*   binarySearch.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 06:13:44 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 10:44:25 by titouanck        ###   ########.fr       */
+/*   Created: 2024/01/14 10:07:56 by titouanck         #+#    #+#             */
+/*   Updated: 2024/01/14 10:13:44 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PMERGEME_HPP
-	#define PMERGEME_HPP
+#ifndef BINARYSEARCH_HPP
+	#define BINARYSEARCH_HPP
 
-	#include <string>
-	#include <iostream>
 	#include <vector>
 	#include "Pair.hpp"
-	#include "binarySearch.hpp"
 
 /* ************************************************************************** */
 
 /* ************************************************************************** */
 
-	#include "PmergeMe.tpp"
+	#include "binarySearch.tpp"
 
 #endif
+
+/* ************************************************************************** */
