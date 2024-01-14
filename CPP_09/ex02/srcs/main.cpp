@@ -6,90 +6,83 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:11:51 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 12:42:42 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 16:57:08 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PmergeMe.hpp"
-#include "binarySearch.hpp"
+#include "Algorithm.hpp"
+#include <cstdlib>
+#include <unistd.h>
+#include <sys/time.h>
+
+// 8 16 4 62 42 183 19 23 15 37
 
 /* ************************************************************************** */
 
-// template <typename T>
-// void printVector(std::vector<T> vct)
-// {
-// 	typename std::vector<T>::iterator	it;
-
-// 	it = vct.begin();
-// 	while (it != vct.end())
-// 	{
-// 		std::cout << *it;
-// 		it++;
-// 		if (it != vct.end())
-// 			std::cout << ", ";
-// 	}
-// 	std::cout << std::endl;
-// }
-
-int	main(int ac, char **av)
+bool	PmergeMe(int argc, char **argv)
 {
-	(void)	ac;
-	(void)	av;
+	std::vector<unsigned int>	vectorContainer;
+	std::deque<unsigned int>	dequeContainer;
+	long						nbr;
+	std::string					str;
+	char						*ptr;
+	struct timeval				tv;
+	size_t						startTime;
+	size_t						endTime;
 	
-	std::vector<unsigned int>	vct;
-	std::vector<unsigned int>::iterator	it;
-	vct.push_back(8);
-	vct.push_back(16);
-	vct.push_back(4);
-	vct.push_back(62);
-	vct.push_back(42);
-	vct.push_back(183);
-	vct.push_back(19);
-	vct.push_back(23);
-	vct.push_back(15);
-	vct.push_back(37);
-
-	// for (it = vct.begin(); it != vct.end(); it++)
-	// {
-	// 	std::cout << *it << ", ";
-	// }
-	// std::cout << std::endl;
-
-	// vct.push_back(8);
-	// vct.push_back(16);
-	// vct.push_back(4);
-	// vct.push_back(42);
-	// vct.push_back(23);
-	// vct.push_back(15);
-
-	// vct.push_back(1);
-	// vct.push_back(4);
-	// vct.push_back(5);
-	// vct.push_back(7);
-	// vct.push_back(40);
-	// vct.push_back(50);
-
-
-	// vct.push_back(4);
-	// vct.push_back(7);
-	// vct.push_back(50);
-	recursivity<32>::fordJohnsonAlgorithm<unsigned int>(vct);
 	
-	std::cout << "final result: ";
-	for (it = vct.begin(); it != vct.end(); it++)
+	for (int i = 1; i < argc; i++)
 	{
-		std::cout << *it << ", ";
+		str = argv[i];
+		nbr = std::strtol(str.c_str(), &ptr, 0);
+		if (nbr < 0 || ptr != (str.c_str() + str.length()))
+			return std::cout << "Error" << std::endl, false;
+
+		vectorContainer.push_back(nbr);
+		dequeContainer.push_back(nbr);
+	}
+	
+	std::cout << "Before: ";
+	for (std::vector<unsigned int>::iterator it = vectorContainer.begin(); it != vectorContainer.end(); it++)
+	{
+		std::cout << *it;
+		if (it + 1 != vectorContainer.end())
+			std::cout << " ";
 	}
 	std::cout << std::endl;
 
-	// Pair<unsigned int>	pair_a(8, 2);
-	// Pair<unsigned int>	pair_b(6, 3);
-	// std::cout << "pair_b < pair_a (should be 1) : " << (pair_b < pair_a) << std::endl;
-	// std::cout << "pair_a < pair_b (should be 0) : " << (pair_a < pair_b) << std::endl;
-	
-	// printVector(vct);
+	gettimeofday(&tv, NULL);
+	startTime = 1000000 * tv.tv_sec + tv.tv_usec;
+	Algorithm<64>::fordJohnson<unsigned int >(vectorContainer);
+	gettimeofday(&tv, NULL);
+	endTime = 1000000 * tv.tv_sec + tv.tv_usec;
 
-	// std::cout << *(binarySearch(vct.begin(), vct.end(), static_cast<unsigned int>(1))) << std::endl;
+	std::cout << "After: ";
+	for (std::vector<unsigned int>::iterator it = vectorContainer.begin(); it != vectorContainer.end(); it++)
+	{
+		std::cout << *it;
+		if (it + 1 != vectorContainer.end())
+			std::cout << " ";
+	}
+	std::cout << std::endl;
+	
+	std::cout << "Time to process a range of " << vectorContainer.size() << " elements with std::vector : " << endTime - startTime << " us" << std::endl;
+
+	gettimeofday(&tv, NULL);
+	startTime = 1000000 * tv.tv_sec + tv.tv_usec;
+	Algorithm<32>::fordJohnson<unsigned int >(dequeContainer);
+	gettimeofday(&tv, NULL);
+	endTime = 1000000 * tv.tv_sec + tv.tv_usec;
+	std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque  : " << endTime - startTime << " us" << std::endl;
+	return true;
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc < 2)
+		return std::cout << "PmergeMe: not enough arguments" << std::endl, 1;
+	else
+		return !PmergeMe(argc, argv);
 }
 
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:23:32 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 09:45:10 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 17:02:20 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ Pair<T>::~Pair()
 template <typename T>
 void	Pair<T>::sortDescending()
 {
-	if (*(this->_b) > *(this->_a))
+	if (this->_a && this->_b && *(this->_b) > *(this->_a))
 		std::swap(*(this->_b), *(this->_a));
 }
 
@@ -71,31 +71,41 @@ T	&Pair<T>::get_b() const
 template <typename T>
 bool Pair<T>::operator<(const Pair &other) const
 {
-	return *(this->_a) < *(other._a);
+	if (this->_a && this->_b)
+		return *(this->_a) < *(other._a);
+	return false ;
 }
 
 template <typename T>
 bool Pair<T>::operator<=(const Pair &other) const
 {
-	return *(this->_a) <= *(other._a);
+	if (this->_a && this->_b)
+		return *(this->_a) <= *(other._a);
+	return false ;
 }
 
 template <typename T>
 bool Pair<T>::operator>(const Pair &other) const
 {
-	return *(this->_a) > *(other._a);
+	if (this->_a && this->_b)
+		return *(this->_a) > *(other._a);
+	return false ;
 }
 
 template <typename T>
 bool Pair<T>::operator>=(const Pair &other) const
 {
-	return *(this->_a) >= *(other._a);
+	if (this->_a && this->_b)
+		return *(this->_a) >= *(other._a);
+	return false ;
 }
 
 template <typename T>
 bool Pair<T>::operator==(const Pair &other) const
 {
-	return *(this->_a) == *(other._a);
+	if (this->_a && this->_b)
+		return *(this->_a) == *(other._a);
+	return false ;
 }
 
 /* ************************************************************************** */
