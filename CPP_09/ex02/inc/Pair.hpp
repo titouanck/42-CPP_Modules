@@ -1,28 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
+/*   Pair.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 06:13:44 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 06:22:16 by titouanck        ###   ########.fr       */
+/*   Created: 2024/01/14 06:21:42 by titouanck         #+#    #+#             */
+/*   Updated: 2024/01/14 07:02:24 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PMERGEME_HPP
-	#define PMERGEME_HPP
-
-	#include <string>
-	#include <iostream>
-	#include <vector>
-	#include <deque>
-	#include "Pair.hpp"
+#ifndef PAIR_HPP
+	#define PAIR_HPP
 
 /* ************************************************************************** */
 
+template <typename T>
+class Pair
+{
+	public:
+		Pair();
+		Pair(const Pair &copy);
+		Pair operator=(const Pair &copy);
+		~Pair();
+
+		Pair(T a, T b);
+
+		void	sortDescending();
+		T		_a;
+		T		_b;
+
+		bool operator<(const Pair &other) const;
+		bool operator<=(const Pair &other) const;
+		bool operator>(const Pair &other) const;
+		bool operator>=(const Pair &other) const;
+		bool operator==(const Pair &other) const;
+};
+
 /* ************************************************************************** */
 
-	#include "PmergeMe.tpp"
+	#include "Pair.tpp"
 
 #endif
