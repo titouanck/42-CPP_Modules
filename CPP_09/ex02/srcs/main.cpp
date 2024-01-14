@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:11:51 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 17:04:25 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 17:07:41 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ bool	PmergeMe(int argc, char **argv)
 	
 	std::cout << "Time to process a range of " << vectorContainer.size() << " elements with std::vector : " << endTime - startTime << " us" << std::endl;
 
-	gettimeofday(&tv, NULL);
-	startTime = 1000000 * tv.tv_sec + tv.tv_usec;
-	Algorithm<32>::fordJohnson<unsigned int >(dequeContainer);
-	gettimeofday(&tv, NULL);
-	endTime = 1000000 * tv.tv_sec + tv.tv_usec;
-	std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque  : " << endTime - startTime << " us" << std::endl;
+	// gettimeofday(&tv, NULL);
+	// startTime = 1000000 * tv.tv_sec + tv.tv_usec;
+	// Algorithm<32>::fordJohnson<unsigned int >(dequeContainer);
+	// gettimeofday(&tv, NULL);
+	// endTime = 1000000 * tv.tv_sec + tv.tv_usec;
+	// std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque  : " << endTime - startTime << " us" << std::endl;
 	return true;
 }
 
