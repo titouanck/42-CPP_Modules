@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:18:04 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 13:09:22 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 15:13:25 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* ************************************************************************** */
 
-jacobsthal(unsigned int n1, unsigned int n2)
+int	jacobsthal(int n1, int n2)
 {
 	return (n1 + 2 * n2);
 }
@@ -24,29 +24,68 @@ template<typename T>
 std::vector<T>	insert_pairs(std::vector<Pair<T> > &container, T *lastOddElement)
 {
 	std::vector<T>								mainChain;
-	typename std::vector<T>::iterator			mainChainEnd;
+	typename std::vector<T>::iterator			mainChainLast;
 	typename std::vector<Pair<T> >::iterator	containerIt;
-	unsigned int	j_lower = 1;
-	unsigned int	j_upper = 1;
+	int											j_lower;
+	int											j_upper;
+	int											tmp;
+	
+	std::cout << "container[0]: " << container[0] << std::endl << std::endl;
 	
 	mainChain.push_back(container[0].get_b());
 	mainChain.push_back(container[0].get_a());
+
+	// std::cout << "mainChain BEGIN: ";
+	// for (typename std::vector<T>::iterator it = mainChain.begin(); it != mainChain.end(); it++)
+	// 	std::cout << *it << ",_, ";
+	// std::cout << std::endl << std::endl;
 
 	// INSERT ALL A'S, ONE AFTER ANOTHER
 	for (containerIt = container.begin() + 1; containerIt != container.end(); containerIt += 1)
 	{
 		mainChain.push_back(containerIt->get_a());
 	}
+
+	std::cout << "mainChain AFTER_ALL_A'S: ";
+	for (typename std::vector<T>::iterator it = mainChain.begin(); it != mainChain.end(); it++)
+		std::cout << *it << ",_, ";
+	std::cout << std::endl << std::endl;
+	
 	if (lastOddElement)
 		mainChain.insert(binarySearch(mainChain.begin(), mainChain.end(), *lastOddElement), *lastOddElement);
+
+	std::cout << "mainChain INSERT_LAST_OLD_ELEMENT: ";
+	for (typename std::vector<T>::iterator it = mainChain.begin(); it != mainChain.end(); it++)
+		std::cout << *it << ",_, ";
+	std::cout << std::endl << std::endl;
+
 	// INSERT ALL B'S, WITH BINARY SEARCH
-	for (size_t i = 1; i < container.size(); i += 1)
+	j_lower	= 1;
+	j_upper	= 1;
+	tmp		= 1;
+	while (j_upper < static_cast<int>(container.size()))
 	{
-		mainChainEnd = mainChain.end();
-		if ()
-		mainChain.insert(binarySearch(mainChain.begin(), mainChain.end(), container[i].get_b()), container[i].get_b());
+		tmp = j_lower;
+		j_lower = j_upper;
+		j_upper = std::min(jacobsthal(j_lower, tmp), static_cast<int>(container.size()));
+		for (int i = j_upper - 1; i >= j_lower; i--)
+		{
+			std::cout << "B TO PUT: " << container[i].get_b() << std::endl;
+			std::cout << "j_upper= " << j_upper << std::endl;
+			if (j_upper == static_cast<int>(container.size()))
+				mainChainLast = mainChain.end();
+			else
+				mainChainLast = mainChain.begin() + j_upper + j_lower - 1;
+			std::cout << "mainChainLast: " << *(mainChainLast - 1) << std::endl;
+			mainChain.insert(binarySearch(mainChain.begin(), mainChainLast, container[i].get_b()), container[i].get_b());
+		}
 	}
-	
+
+	std::cout << "mainChain AFTER ALL B'S: ";
+	for (typename std::vector<T>::iterator it = mainChain.begin(); it != mainChain.end(); it++)
+		std::cout << *it << ",_, ";
+	std::cout << std::endl << std::endl;
+
 	return mainChain;
 }
 
@@ -73,8 +112,25 @@ class recursivity
 		lastOddElement = NULL;
 		if (argContainerSize % 2 != 0)
 			lastOddElement = &(*(argContainer.end() - 1));
+		
+		std::cout << "newContainerOfPairs: ";
+		for (typename std::vector<Pair<T> >::iterator it = newContainerOfPairs.begin(); it != newContainerOfPairs.end(); it++)
+			std::cout << *it << ",_, ";
+		std::cout << std::endl << std::endl;
+
 		recursivity<N - 1>::template fordJohnsonAlgorithm<Pair<T> >(newContainerOfPairs);
+		
+		// std::cout << "newContainerOfPairs: ";
+		// for (typename std::vector<Pair<T> >::iterator it = newContainerOfPairs.begin(); it != newContainerOfPairs.end(); it++)
+		// 	std::cout << *it << ",_, ";
+		// std::cout << std::endl << std::endl;
+		
 		argContainer = insert_pairs(newContainerOfPairs, lastOddElement);
+		
+		// std::cout << "argContainer: ";
+		// for (typename std::vector<T>::iterator it = argContainer.begin(); it != argContainer.end(); it++)
+		// 	std::cout << *it << ",_, ";
+		// std::cout << std::endl << std::endl;
 	}
 };
 
