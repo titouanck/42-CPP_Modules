@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:18:04 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 15:18:01 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 15:38:15 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,15 @@ std::vector<T>	insert_pairs(std::vector<Pair<T> > &container, T *lastOddElement)
 		j_upper = std::min(jacobsthal(j_lower, tmp), static_cast<int>(container.size()));
 		for (int i = j_upper - 1; i >= j_lower; i--)
 		{
+			std::cout << "B TO PUT: " << container[i].get_b() << std::endl;
+			std::cout << "j_lower= " << j_lower << std::endl;
+			std::cout << "j_upper= " << j_upper << std::endl;
+			std::cout << "container.size()= " << static_cast<int>(container.size()) << std::endl;
 			if (j_upper == static_cast<int>(container.size()))
 				mainChainLast = mainChain.end();
 			else
 				mainChainLast = mainChain.begin() + j_upper + j_lower - 1;
+			std::cout << "mainChainLast: " << *(mainChainLast - 1) << std::endl;
 			mainChain.insert(binarySearch(mainChain.begin(), mainChainLast, container[i].get_b()), container[i].get_b());
 		}
 	}
