@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:11:51 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 16:57:08 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 17:04:25 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ bool	PmergeMe(int argc, char **argv)
 	struct timeval				tv;
 	size_t						startTime;
 	size_t						endTime;
-	
 	
 	for (int i = 1; i < argc; i++)
 	{
