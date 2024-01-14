@@ -6,12 +6,14 @@
 /*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:18:04 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 18:45:55 by tchevrie         ###   ########.fr       */
+/*   Updated: 2024/01/14 19:43:22 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ALGORITHM_TPP
 	#define ALGORITHM_TPP
+
+	#include <unistd.h>
 
 /* ************************************************************************** */
 
@@ -37,13 +39,25 @@ std::vector<T>	insertPairs(std::vector<Pair<T> > &container, T *lastOddElement)
 
 	// INSERT ALL A'S, ONE AFTER ANOTHER
 	for (containerIt = container.begin() + 1; containerIt != container.end(); containerIt += 1)
-	{
 		mainChain.push_back(containerIt->get_a());
-	}
 
 	// INSERT LAST ELEMENT IF ODD NUMBER OF ELEMS
 	if (lastOddElement)
+	{
+		// std::cout << "BEFORE" << std::endl;
+		// sleep(1);
+		// std::cout << "mainChain.size()" << " : " << mainChain.size() << std::endl;
+		std::cout << lastOddElement << " : " << *lastOddElement << std::endl;
+		// std::cout << *(mainChain.begin()) << std::endl;
+		// sleep(2);
+		// std::cout << *(mainChain.end() - 1) << std::endl;
+		for (typename std::vector<T>::iterator it = mainChain.begin(); it != mainChain.end(); it++)
+			std::cout << *it << ", ";
+		std::cout << std::endl;
+		sleep(10);
 		mainChain.insert(binarySearch(mainChain.begin(), mainChain.end(), *lastOddElement), *lastOddElement);
+		std::cout << "AFTER" << std::endl;
+	}
 
 	// INSERT ALL B'S, WITH BINARY SEARCH
 	j_lower	= 1;
@@ -84,7 +98,7 @@ void	Algorithm<N>::fordJohnson(std::vector<T> &argContainer)
 		newContainerOfPairs.push_back(Pair<T>(argContainer[i], argContainer[i + 1]));
 		newContainerOfPairs[i / 2].sortDescending();
 	}
-	lastOddElement = nullptr;
+	lastOddElement = 0;
 	if (argContainerSize % 2 != 0)
 		lastOddElement = &(*(argContainer.end() - 1));
 
@@ -110,9 +124,7 @@ std::deque<T>	insertPairs(std::deque<Pair<T> > &container, T *lastOddElement)
 
 	// INSERT ALL A'S, ONE AFTER ANOTHER
 	for (containerIt = container.begin() + 1; containerIt != container.end(); containerIt += 1)
-	{
 		mainChain.push_back(containerIt->get_a());
-	}
 
 	// INSERT LAST ELEMENT IF ODD NUMBER OF ELEMS
 	if (lastOddElement)
@@ -158,7 +170,7 @@ void	Algorithm<N>::fordJohnson(std::deque<T> &argContainer)
 		newContainerOfPairs.push_back(Pair<T>(argContainer[i], argContainer[i + 1]));
 		newContainerOfPairs[i / 2].sortDescending();
 	}
-	lastOddElement = nullptr;
+	lastOddElement = 0;
 	if (argContainerSize % 2 != 0)
 		lastOddElement = &(*(argContainer.end() - 1));
 

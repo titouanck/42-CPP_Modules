@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   binarySearch.tpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:13:00 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 16:53:35 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 19:47:12 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typename std::vector<T>::iterator	binarySearch(typename std::vector<T>::iterator
 	{
 		if (*first >= toFind)
 			return first;
-		else if (*(first + 1) >= toFind)
+		else if (distance == 1 && *(first + 1) >= toFind)
 			return first + 1;
 		else
 			return first + 2;
@@ -52,7 +52,7 @@ typename std::deque<T>::iterator	binarySearch(typename std::deque<T>::iterator f
 	{
 		if (*first >= toFind)
 			return first;
-		else if (*(first + 1) >= toFind)
+		else if (distance == 1 && *(first + 1) >= toFind)
 			return first + 1;
 		else
 			return first + 2;
