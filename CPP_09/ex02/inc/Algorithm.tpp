@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Algorithm.tpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:18:04 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 16:16:55 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 18:45:55 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	Algorithm<N>::fordJohnson(std::vector<T> &argContainer)
 		newContainerOfPairs.push_back(Pair<T>(argContainer[i], argContainer[i + 1]));
 		newContainerOfPairs[i / 2].sortDescending();
 	}
-	lastOddElement = NULL;
+	lastOddElement = nullptr;
 	if (argContainerSize % 2 != 0)
 		lastOddElement = &(*(argContainer.end() - 1));
 
@@ -158,7 +158,7 @@ void	Algorithm<N>::fordJohnson(std::deque<T> &argContainer)
 		newContainerOfPairs.push_back(Pair<T>(argContainer[i], argContainer[i + 1]));
 		newContainerOfPairs[i / 2].sortDescending();
 	}
-	lastOddElement = NULL;
+	lastOddElement = nullptr;
 	if (argContainerSize % 2 != 0)
 		lastOddElement = &(*(argContainer.end() - 1));
 

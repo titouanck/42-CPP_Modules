@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Pair.tpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:23:32 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 17:02:20 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 18:45:41 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* PRIVATE ****************************************************************** */
 
 template <typename T>
-Pair<T>::Pair() : _a(NULL), _b(NULL)
+Pair<T>::Pair() : _a(nullptr), _b(nullptr)
 {
 }
 

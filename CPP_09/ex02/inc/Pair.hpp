@@ -3,19 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Pair.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:21:42 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 16:27:08 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 18:45:22 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PAIR_HPP
 	#define PAIR_HPP
-
-	#ifndef NULL
-		#define NULL 0
-	#endif
 
 	#include <string>
 	#include <iostream>

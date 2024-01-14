@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
+/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:11:51 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 17:07:41 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/14 18:45:41 by tchevrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ bool	PmergeMe(int argc, char **argv)
 	}
 	std::cout << std::endl;
 
-	gettimeofday(&tv, NULL);
+	gettimeofday(&tv, nullptr);
 	startTime = 1000000 * tv.tv_sec + tv.tv_usec;
 	Algorithm<64>::fordJohnson<unsigned int >(vectorContainer);
-	gettimeofday(&tv, NULL);
+	gettimeofday(&tv, nullptr);
 	endTime = 1000000 * tv.tv_sec + tv.tv_usec;
 
 	std::cout << "After: ";
@@ -67,10 +67,10 @@ bool	PmergeMe(int argc, char **argv)
 	
 	std::cout << "Time to process a range of " << vectorContainer.size() << " elements with std::vector : " << endTime - startTime << " us" << std::endl;
 
-	// gettimeofday(&tv, NULL);
+	// gettimeofday(&tv, nullptr);
 	// startTime = 1000000 * tv.tv_sec + tv.tv_usec;
 	// Algorithm<32>::fordJohnson<unsigned int >(dequeContainer);
-	// gettimeofday(&tv, NULL);
+	// gettimeofday(&tv, nullptr);
 	// endTime = 1000000 * tv.tv_sec + tv.tv_usec;
 	// std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque  : " << endTime - startTime << " us" << std::endl;
 	return true;
