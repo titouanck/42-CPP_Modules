@@ -6,7 +6,7 @@
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:07:28 by tchevrie          #+#    #+#             */
-/*   Updated: 2024/01/15 11:06:59 by titouanck        ###   ########.fr       */
+/*   Updated: 2024/01/04 19:27:33 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@
 bool	RPN(std::string str)
 {
 	std::stack<int>		numbers;
+	int					tmp;
 	size_t				i;
-	int					topNumber;
+	int					result;
+	bool				definedResult;
 
+	result = 0;
+	definedResult = false;
 	if (!str[0] || !isdigit(str[0]))
 		return (std::cout << "Error\n", false);
 	i = 0;
@@ -31,34 +35,40 @@ bool	RPN(std::string str)
 			numbers.push(str[i] - '0');
 		else 
 		{
-			if (numbers.size() < 2)
+			if (numbers.size() < 1)
 				return (std::cout << "Error\n", false);
 			else
 			{
-				topNumber = numbers.top();
-				numbers.pop();
+				if (definedResult == false)
+				{
+					if (numbers.size() < 2)
+						return (std::cout << "Error\n", false);
+					tmp = numbers.top();
+					numbers.pop();
+					result = numbers.top();
+					numbers.pop();
+					numbers.push(tmp);
+					definedResult = true;
+				}
 				switch (str[i])
 				{
 					case '*':
-						topNumber = numbers.top() * topNumber;
+						result *= numbers.top();
 						break ;
 					case '/':
-						if (topNumber == 0)
-							return (std::cout << "Error\n", false);
-						topNumber = numbers.top() / topNumber;
+						result /= numbers.top();
 						break ;
 					case '+':
-						topNumber = numbers.top() + topNumber;
+						result += numbers.top();
 						break ;
 					case '-':
-						topNumber = numbers.top() - topNumber;
+						result -= numbers.top();
 						break ;
 					default:
 						return (std::cout << "Error\n", false);
 						break ;
 				}
 				numbers.pop();
-				numbers.push(topNumber);
 			}
 		}
 		if (str[i + 1] && !isspace(str[i + 1]))
@@ -66,10 +76,10 @@ bool	RPN(std::string str)
 		while (isspace(str[++i]))
 			;
 	}
-	if (numbers.empty())
+	if (!numbers.empty())
 		return (std::cout << "Error\n", false);
 	else
-		return (std::cout << numbers.top() << std::endl, true);
+		return (std::cout << result << std::endl, true);
 }
 
 /* ************************************************************************** */
