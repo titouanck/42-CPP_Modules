@@ -3,6 +3,10 @@ CC = c++
 CFLAGS = -g -Wall -Wextra -Werror -std=c++98
 
 ##########################################################################
+# inc/Algorithm.hpp inc/Algorithm.tpp inc/binarySearch.hpp 
+# inc/binarySearch.tpp inc/Pair.hpp inc/Pair.tpp inc/PmergeMe.hpp
+# srcs/PmergeMe.cpp srcs/main.cpp
+##########################################################################
 
 SRCS_PATH = srcs/
 SRCS_FILES = $(shell find srcs/ -name '*.cpp' -exec basename {} \;)

@@ -3,6 +3,9 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 ##########################################################################
+# inc/RPN.hpp			 
+# srcs/RPN.cpp srcs/main.cpp
+##########################################################################
 
 SRCS_PATH = srcs/
 SRCS_FILES = $(shell find srcs/ -name '*.cpp' -exec basename {} \;)
