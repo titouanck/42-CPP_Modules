@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   Algorithm.tpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 06:18:04 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 19:43:22 by tchevrie         ###   ########.fr       */
+/*   Updated: 2024/01/15 10:38:17 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ALGORITHM_TPP
 	#define ALGORITHM_TPP
 
-	#include <unistd.h>
-
 /* ************************************************************************** */
 
-int	jacobsthal(int n1, int n2)
+template <unsigned int N>
+int	Algorithm<N>::jacobsthal(int n1, int n2)
 {
 	return (n1 + 2 * n2);
 }
@@ -43,21 +42,7 @@ std::vector<T>	insertPairs(std::vector<Pair<T> > &container, T *lastOddElement)
 
 	// INSERT LAST ELEMENT IF ODD NUMBER OF ELEMS
 	if (lastOddElement)
-	{
-		// std::cout << "BEFORE" << std::endl;
-		// sleep(1);
-		// std::cout << "mainChain.size()" << " : " << mainChain.size() << std::endl;
-		std::cout << lastOddElement << " : " << *lastOddElement << std::endl;
-		// std::cout << *(mainChain.begin()) << std::endl;
-		// sleep(2);
-		// std::cout << *(mainChain.end() - 1) << std::endl;
-		for (typename std::vector<T>::iterator it = mainChain.begin(); it != mainChain.end(); it++)
-			std::cout << *it << ", ";
-		std::cout << std::endl;
-		sleep(10);
 		mainChain.insert(binarySearch(mainChain.begin(), mainChain.end(), *lastOddElement), *lastOddElement);
-		std::cout << "AFTER" << std::endl;
-	}
 
 	// INSERT ALL B'S, WITH BINARY SEARCH
 	j_lower	= 1;
@@ -67,7 +52,7 @@ std::vector<T>	insertPairs(std::vector<Pair<T> > &container, T *lastOddElement)
 	{
 		tmp = j_lower;
 		j_lower = j_upper;
-		j_upper = std::min(jacobsthal(j_lower, tmp), static_cast<int>(container.size()));
+		j_upper = std::min(Algorithm<42>::jacobsthal(j_lower, tmp), static_cast<int>(container.size()));
 		for (int i = j_upper - 1; i >= j_lower; i--)
 		{
 			if (j_upper == static_cast<int>(container.size()))
@@ -138,7 +123,7 @@ std::deque<T>	insertPairs(std::deque<Pair<T> > &container, T *lastOddElement)
 	{
 		tmp = j_lower;
 		j_lower = j_upper;
-		j_upper = std::min(jacobsthal(j_lower, tmp), static_cast<int>(container.size()));
+		j_upper = std::min(Algorithm<42>::jacobsthal(j_lower, tmp), static_cast<int>(container.size()));
 		for (int i = j_upper - 1; i >= j_lower; i--)
 		{
 			if (j_upper == static_cast<int>(container.size()))

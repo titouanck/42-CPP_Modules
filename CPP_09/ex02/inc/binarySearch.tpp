@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   binarySearch.tpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchevrie <tchevrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:13:00 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/14 19:47:12 by tchevrie         ###   ########.fr       */
+/*   Updated: 2024/01/15 10:39:05 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BINARYSEARCH_TPP
 	#define BINARYSEARCH_TPP
 
-/* ************************************************************************** */
+/* VECTOR ******************************************************************* */
 
 template <typename T>
 typename std::vector<T>::iterator	binarySearch(typename std::vector<T>::iterator first, typename std::vector<T>::iterator last, const T &toFind)
@@ -26,7 +26,7 @@ typename std::vector<T>::iterator	binarySearch(typename std::vector<T>::iterator
 	{
 		if (*first >= toFind)
 			return first;
-		else if (distance == 1 && *(first + 1) >= toFind)
+		else if (distance == 0 || (distance == 1 && *(first + 1) >= toFind))
 			return first + 1;
 		else
 			return first + 2;
@@ -41,6 +41,8 @@ typename std::vector<T>::iterator	binarySearch(typename std::vector<T>::iterator
 		return binarySearch(mid + 1, last, toFind);
 }
 
+/* DEQUE********************************************************************* */
+
 template <typename T>
 typename std::deque<T>::iterator	binarySearch(typename std::deque<T>::iterator first, typename std::deque<T>::iterator last, const T &toFind)
 {
@@ -52,7 +54,7 @@ typename std::deque<T>::iterator	binarySearch(typename std::deque<T>::iterator f
 	{
 		if (*first >= toFind)
 			return first;
-		else if (distance == 1 && *(first + 1) >= toFind)
+		else if (distance == 0 || (distance == 1 && *(first + 1) >= toFind))
 			return first + 1;
 		else
 			return first + 2;

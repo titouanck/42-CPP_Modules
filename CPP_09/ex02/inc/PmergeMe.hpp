@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Algorithm.hpp                                      :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: titouanck <chevrier.titouan@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 06:13:44 by titouanck         #+#    #+#             */
-/*   Updated: 2024/01/15 10:36:02 by titouanck        ###   ########.fr       */
+/*   Created: 2024/01/15 10:29:11 by titouanck         #+#    #+#             */
+/*   Updated: 2024/01/15 10:30:02 by titouanck        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALGORITHM_HPP
-	#define ALGORITHM_HPP
+#ifndef PMERGEME_HPP
+	#define PMERGEME_HPP
 
-	#include <vector>
-	#include <deque>
-	#include "Pair.hpp"
-	#include "binarySearch.hpp"
-
-/* ************************************************************************** */
-
-template <unsigned int N>
-class Algorithm
-{
-	public:
-		template <typename T>
-		static void	fordJohnson(std::vector<T> &argContainer);
-
-		template <typename T>
-		static void	fordJohnson(std::deque<T> &argContainer);
-
-		static int	jacobsthal(int n1, int n2);
-		
-		virtual ~Algorithm() = 0;
-};
+	#include "Algorithm.hpp"
+	#include <cstdlib>
+	#include <unistd.h>
+	#include <sys/time.h>
 
 /* ************************************************************************** */
 
-	#include "Algorithm.tpp"
+bool	PmergeMe(int argc, char **argv);
+
+/* ************************************************************************** */
 
 #endif
